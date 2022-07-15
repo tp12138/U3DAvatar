@@ -46,6 +46,8 @@ public class ScrollRectDemoByXlua : MonoBehaviour
     [LuaCallCSharp]
     void Start()
     {
+        //Image a = new Image();
+       
         datasAndIndex = new Dictionary<GameObject, int>();
         needDispose = new List<GameObject>();
         scriptEnv = luaEnv.NewTable();
@@ -57,7 +59,7 @@ public class ScrollRectDemoByXlua : MonoBehaviour
         scriptEnv.Set("listContent", listContent);
         scriptEnv.Set("scrollRect", scrollRect);
        
-       // luaEnv.AddLoader(LoadLuaScript);
+        //luaEnv.AddLoader(LoadLuaScript);
         //luaEnv.DoString("require'ScrollRectDemoByXLua'","lua ScrollRect",scriptEnv);
         luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
         setRecordItem = luaEnv.Global.Get<Action<int, GameObject>>("setRecordItem");

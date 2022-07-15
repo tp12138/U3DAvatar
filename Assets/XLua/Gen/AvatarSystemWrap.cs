@@ -227,12 +227,26 @@ namespace XLua.CSObjectWrap
                 AvatarSystem gen_to_be_invoked = (AvatarSystem)translator.FastGetCSObj(L, 1);
             
             
-                
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 2&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _sourceName = LuaAPI.lua_tostring(L, 2);
                     
                         var gen_ret = gen_to_be_invoked.loadSourcesFromAssetBundle( _sourceName );
-                        translator.Push(L, gen_ret);
+                        translator.PushAny(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 3&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)&& translator.Assignable<System.Type>(L, 3)) 
+                {
+                    string _sourceName = LuaAPI.lua_tostring(L, 2);
+                    System.Type _type = (System.Type)translator.GetObject(L, 3, typeof(System.Type));
+                    
+                        var gen_ret = gen_to_be_invoked.loadSourcesFromAssetBundle( _sourceName, _type );
+                        translator.PushAny(L, gen_ret);
                     
                     
                     
@@ -242,6 +256,8 @@ namespace XLua.CSObjectWrap
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to AvatarSystem.loadSourcesFromAssetBundle!");
             
         }
         
@@ -287,7 +303,7 @@ namespace XLua.CSObjectWrap
             
                 
                 {
-                    UnityEngine.Object __object = (UnityEngine.Object)translator.GetObject(L, 2, typeof(UnityEngine.Object));
+                    object __object = translator.GetObject(L, 2, typeof(object));
                     
                         var gen_ret = gen_to_be_invoked.TypeChangeToSprite( __object );
                         translator.Push(L, gen_ret);

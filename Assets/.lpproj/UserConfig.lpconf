@@ -14,45 +14,45 @@
   </TreeState>
 </ProjectUI>
 <FindAnReplaceUI
-  Pattern = "ttt"
+  Pattern = "eeyes"
   MatchCase = "false"
   MatchWholeWord = "true"
   UseRegEx = "false"
   Target = ""
   Replace = ""/>
 <MainWindow
-  X = "676"
-  Y = "3"
-  Width = "1244"
-  Height = "720"
+  X = "960"
+  Y = "0"
+  Width = "960"
+  Height = "1040"
   Maximized = "true"
-  LastCodeFilename = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt">
+  LastCodeFilename = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt">
   <DockingControl>
     <DockingNode DockingDirection = "Horizontal">
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "1702" Height = "923" DocumentStyle = "true">
+        <DockingBlock Width = "1622" Height = "923" DocumentStyle = "true">
           <DockingCard
             Text = "AvatarSystem.lua.txt"
             Tag = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt"
-            ActivePage = "true"
-            ActivateTime = "896764785"
-            CaretLineIndex = "37"
-            CaretCodeCharIndex = "24"
+            ActivePage = "false"
+            ActivateTime = "960027144"
+            CaretLineIndex = "21"
+            CaretCodeCharIndex = "73"
             BaseX = "0"
-            BaseY = "-285"/>
+            BaseY = "-57"/>
           <DockingCard
             Text = "ScrollRectDemoByXLua.lua.txt"
             Tag = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt"
-            ActivePage = "false"
-            ActivateTime = "895577763"
-            CaretLineIndex = "68"
-            CaretCodeCharIndex = "32"
+            ActivePage = "true"
+            ActivateTime = "962941407"
+            CaretLineIndex = "98"
+            CaretCodeCharIndex = "71"
             BaseX = "0"
-            BaseY = "0"/>
+            BaseY = "-1026"/>
         </DockingBlock>
       </DockingNode>
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "199" Height = "923" DocumentStyle = "false">
+        <DockingBlock Width = "279" Height = "923" DocumentStyle = "false">
           <DockingCard
             Text = "Project"
             Tag = ""

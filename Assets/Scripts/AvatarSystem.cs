@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,7 +73,7 @@ public class AvatarSystem : MonoBehaviour
     }*/
 
     //保存可替换的服装的信息,目标物体生成对应部位
-    void loadSkinedInfo(Transform sourceTran,Dictionary<string, Dictionary<string, SkinnedMeshRenderer>> datas, GameObject target, Dictionary<string, SkinnedMeshRenderer> smr)
+   /* void loadSkinedInfo(Transform sourceTran,Dictionary<string, Dictionary<string, SkinnedMeshRenderer>> datas, GameObject target, Dictionary<string, SkinnedMeshRenderer> smr)
     {
         if (!sourceTransform) return;
         datas.Clear();
@@ -92,7 +93,7 @@ public class AvatarSystem : MonoBehaviour
             }
             datas[names[0]].Add(names[1], temp);//给部位,设置对应的部位编号和skined
        }
-    }
+    }*/
     
     //初始化目标角色的服装
    /* void initCharacter(string[,] targetStr)
@@ -171,7 +172,13 @@ public class AvatarSystem : MonoBehaviour
         return AssetBundle.LoadFromFile(Application.dataPath + "/AssetBundle/" + bundleName);
     }
     [LuaCallCSharp]
-    public Object loadSourcesFromAssetBundle(string sourceName)
+    public System.Object loadSourcesFromAssetBundle(string sourceName,Type type)
+    {
+        var obj = ab.LoadAsset(sourceName,type);
+        return obj;
+    }
+    [LuaCallCSharp]
+    public System.Object loadSourcesFromAssetBundle(string sourceName)
     {
         var obj = ab.LoadAsset(sourceName);
         return obj;
@@ -179,7 +186,7 @@ public class AvatarSystem : MonoBehaviour
 
     public GameObject TypeChange(object _object) { return (GameObject)_object; }
 
-    public Sprite TypeChangeToSprite(Object _object) { return (Sprite)_object; }
+    public Sprite TypeChangeToSprite(System.Object _object) { return (Sprite)_object; }
     [LuaCallCSharp]
     public Dictionary<string, SkinnedMeshRenderer> getDict()
     {

@@ -92,8 +92,11 @@ function setRecordItem(index,go)
 	goRect.sizeDelta=unity.Vector2(localData.itemWidth*2,localData.itemWidth*2)
 	--enable the item
 	go:SetActive(true)
-	go.name=localData.datas[index];
-	go:GetComponent("Image").sprite=avatarSystem:TypeChangeToSprite(unity.Resources.Load(localData.datas[index],typeof(unity.Sprite)))
+	go.name=localData.datas[index]
+	local sprit=avatarSystem:loadSourcesFromAssetBundle(localData.datas[index],typeof(unity.Sprite))
+	print(localData.datas[index].."is ok:")
+	print(sprit)
+	go:GetComponent("Image").sprite=avatarSystem:TypeChangeToSprite(sprit)
 	go:GetComponent("Toggle").group=localData.scrollRect:GetComponent("ToggleGroup")
 end
 --clear grid and items

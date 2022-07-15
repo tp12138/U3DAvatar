@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4086218754
+CRC: 2183633802
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7e758434a0ae50469ce56e2e4a2f00b9
+    Hash: 6e39006e6844f59ca803f70a3d4d3f2a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fe18d800b34157d2bfd41a4830fffed8
+    Hash: f993205ff4cbc20151023289dc8ba201
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,8 +33,37 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Resources/top-4.jpg
+- Assets/Resources/hair-3.jpg
+- Assets/Resources/pants-2.jpg
+- Assets/Resources/hair-4.jpg
+- Assets/Resources/top-5.jpg
+- Assets/Resources/hair-2.jpg
+- Assets/Resources/shoes-3.jpg
+- Assets/Resources/shoes-2.jpg
+- Assets/Resources/shoes-6.jpg
+- Assets/Resources/shoes-4.jpg
+- Assets/Resources/hair-5.jpg
+- Assets/Resources/top-1.jpg
+- Assets/Resources/eyes-3.jpg
+- Assets/Resources/shoes-1.jpg
+- Assets/Resources/hair-6.jpg
+- Assets/Resources/top-3.jpg
+- Assets/Resources/eyes-1.jpg
+- Assets/Resources/hair-1.jpg
+- Assets/Resources/shoes-5.jpg
+- Assets/Resources/top-2.jpg
+- Assets/Resources/pants-5.jpg
+- Assets/Resources/eyes-2.jpg
 - Assets/Prefabs/FemaleModel Variant.prefab
+- Assets/Resources/pants-3.jpg
+- Assets/Resources/top-6.jpg
+- Assets/Resources/pants-6.jpg
+- Assets/Resources/pants-4.jpg
+- Assets/Resources/pants-1.jpg
 - Assets/Prefabs/target.prefab
 Dependencies: []

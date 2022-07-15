@@ -62,6 +62,4 @@ function initCharacter(targetStr)
 	end
 end
 
-
-
 init()
