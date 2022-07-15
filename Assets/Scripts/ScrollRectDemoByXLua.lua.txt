@@ -94,8 +94,8 @@ function setRecordItem(index,go)
 	go:SetActive(true)
 	go.name=localData.datas[index]
 	local sprit=avatarSystem:loadSourcesFromAssetBundle(localData.datas[index],typeof(unity.Sprite))
-	print(localData.datas[index].."is ok:")
-	print(sprit)
+	--print(localData.datas[index].."is ok:")
+	--print(sprit)
 	go:GetComponent("Image").sprite=avatarSystem:TypeChangeToSprite(sprit)
 	go:GetComponent("Toggle").group=localData.scrollRect:GetComponent("ToggleGroup")
 end
