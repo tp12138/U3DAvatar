@@ -1,0 +1,125 @@
+---------------------------------------------------------------------
+unity=CS.UnityEngine
+localData={}
+function init()
+	avatarSystem=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarSystem")
+	localData._needDispose={}
+	localData.scrollRect=scrollRect:GetComponent("ScrollRect")
+	localData.listContent=listContent
+	localData.datas=dat
+	self.datas=dat
+	loadAssets(6,3,80,1,"item")
+	localData.scrollRect.onValueChanged:AddListener(function() scrollRect:GetComponent("ScrollRectDemoByXlua"):onRecordDrag() end)
+	setRecord()
+end
+
+--config the moduel
+function loadAssets(row1,col1,itemWidt1,chink1,prefabName)
+	localData.item=unity.Resources.Load(prefabName)
+	localData.row=row1
+	self.row=row1
+	localData.col=col1
+	self.col=col1
+	localData.chink=chink1
+	self.chink=chink1
+	temp=localData.item:GetComponent("RectTransform").rect.size.x
+	if emp==itemWidt1 then localData.itemWidth=temp
+	else localData.itemWidth=itemWidt1
+	end
+	---self.itemWidth=localData.itemWidth
+	localData.cell=localData.chink+localData.itemWidth
+	self.cell=localData.cell
+	localData.isDragIng=false
+	self.isDragIng=false
+	localData.isLoadingRecord=false
+	self.isLoadingRecord=false
+end
+
+--config grid
+function setRecordAndGrid()
+	while localData.isLoadingRecord do
+		coroutine.yield()
+	end
+	localData.isLoadingRecord=true
+	self.datas=avatarSystem:getAllMeshNameOfPart(self.partName)
+	localData.datas=self.datas
+	local count=localData.datas.Count
+	h=count/localData.col*localData.cell
+	if count%localData.col~=0 then
+		h=h+localData.cell
+	end
+	local rectTransform=localData.listContent:GetComponent("RectTransform")
+	rectTransform.sizeDelta=unity.Vector2(localData.col*localData.cell,h)
+	rectTransform.localPosition=unity.Vector3(0,0,0)
+	localData.isDragIng=true
+	local temCount
+	if count>=localData.row*localData.col then
+		temCount=localData.row*localData.col
+	else
+		temCount=count
+	end
+	--init some to display
+	for i = 0, temCount-1,1 do
+		local go=CS.UnityEngine.Object.Instantiate(localData.item,unity.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
+		go.transform:SetParent(rectTransform)
+		setRecordItem(i,go)
+	end
+	localData.isDragIng=false
+	self.isDragIng=false
+	localData.isLoadingRecord=false
+	self.isLoadingRecord=false
+end
+function setRecord()
+	--clear grid
+	clearRecord()
+	local ots=coroutine.create(setRecordAndGrid)
+	coroutine.resume(ots)
+end
+
+function setRecordItem(index,go)
+	if index>=localData.datas.Count then
+		return
+	end
+	--add item to the datasAndIndex
+	localData.datasAndIndex[go]=index
+	self.datasAndIndex=localData.datasAndIndex
+	--set transform of the item
+	local goRect=go.transform:GetComponent("RectTransform")
+	goRect.pivot=unity.Vector2(0.5,1)
+	local x=((index)%localData.col)*localData.cell+localData.cell/2
+	local y=getPos_Y(index)
+	goRect.anchoredPosition3D=unity.Vector3(x,y,0)
+	goRect.sizeDelta=unity.Vector2(localData.itemWidth*2,localData.itemWidth*2)
+	--enable the item
+	go:SetActive(true)
+	go.name=localData.datas[index];
+	go:GetComponent("Image").sprite=avatarSystem:TypeChangeToSprite(unity.Resources.Load(localData.datas[index],typeof(unity.Sprite)))
+	go:GetComponent("Toggle").group=localData.scrollRect:GetComponent("ToggleGroup")
+end
+--clear grid and items
+function clearRecord()
+	if localData.datasAndIndex~=nil then
+		for k,v in pairs(localData.datasAndIndex) do
+			k:SetActive(false)
+			localData._needDispose[(#localData._needDispose)]=k
+		end
+	end
+	localData.datasAndIndex={}
+end
+
+--Get the posY of item by the index of item
+function getPos_Y(index)
+	local sizeY=index//localData.col*localData.cell
+	return (0-sizeY)
+end
+
+--Get the index of first item in first line by y
+function getIndex(y)
+	local index=0
+	index=y//localData.cell
+	if index<0 then
+		index=0
+	end
+	return index
+end
+init()

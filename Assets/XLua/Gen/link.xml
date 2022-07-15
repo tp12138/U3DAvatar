@@ -1,0 +1,20 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="AvatarSystem" preserve="all"/>
+		<type fullname="ScrollRectDemoByXlua" preserve="all"/>
+		<type fullname="Tutorial.BaseClass" preserve="all"/>
+		<type fullname="Tutorial.TestEnum" preserve="all"/>
+		<type fullname="Tutorial.DerivedClass" preserve="all"/>
+		<type fullname="Tutorial.ICalc" preserve="all"/>
+		<type fullname="Tutorial.DerivedClassExtensions" preserve="all"/>
+		<type fullname="LuaPerfect.ObjectRef" preserve="all"/>
+		<type fullname="LuaPerfect.ObjectItem" preserve="all"/>
+		<type fullname="LuaPerfect.ObjectFormater" preserve="all"/>
+		<type fullname="Tutorial.DerivedClass+TestEnumInner" preserve="all"/>
+		
+	</assembly>
+
+</linker>
