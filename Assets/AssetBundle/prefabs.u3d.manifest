@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 1592298433
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: db519da68d1b8504719d3d87d4d470e0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8d98812b4c1617c0a50c83a743014a5c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 111
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/shoes-5.prefab
+- Assets/Prefabs/pants-5.prefab
+- Assets/Prefabs/hair-4.prefab
+- Assets/Prefabs/top-6.prefab
+- Assets/Prefabs/hair-6.prefab
+- Assets/Prefabs/shoes-3.prefab
+- Assets/Prefabs/eyes-3.prefab
+- Assets/Prefabs/pants-1.prefab
+- Assets/Prefabs/pants-6.prefab
+- Assets/Prefabs/hair-1.prefab
+- Assets/Prefabs/shoes-1.prefab
+- Assets/Prefabs/top-2.prefab
+- Assets/Prefabs/face-1.prefab
+- Assets/Prefabs/top-5.prefab
+- Assets/Prefabs/shoes-4.prefab
+- Assets/Prefabs/hair-3.prefab
+- Assets/Prefabs/face-2.prefab
+- Assets/Prefabs/eyes-1.prefab
+- Assets/Prefabs/top-3.prefab
+- Assets/Prefabs/top-4.prefab
+- Assets/Prefabs/hair-5.prefab
+- Assets/Prefabs/eyes-2.prefab
+- Assets/Prefabs/top-1.prefab
+- Assets/Prefabs/shoes-2.prefab
+- Assets/Prefabs/hair-2.prefab
+- Assets/Prefabs/pants-2.prefab
+- Assets/Prefabs/pants-4.prefab
+- Assets/Prefabs/pants-3.prefab
+- Assets/Prefabs/shoes-6.prefab
+Dependencies: []

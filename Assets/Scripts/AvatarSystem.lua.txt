@@ -1,8 +1,9 @@
 unity=CS.UnityEngine
 function init()
 	initSource()
-	loadSkinnedInfo(sourceTransform,skinnedSources,target,targetMesh)
-	initCharacter(targetDatas)
+	
+	loadSkinnedInfo()
+	--initCharacter(targetDatas)
 end
 function split(input, delimiter)
 	input = tostring(input)
@@ -19,47 +20,22 @@ end
 function initSource()
 	avatarSystem=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarSystem")
 	avatarSystem.ab=avatarSystem:LoadAssetBundle("target.u3d")
-	local temp=avatarSystem:loadSourcesFromAssetBundle("FemaleModel Variant")
-	sourcesGameObject=avatarSystem:TypeChange(unity.Object.Instantiate(temp))
-	skinnedSources=avatarSystem.skinnedSources
-	temp=avatarSystem:loadSourcesFromAssetBundle("target")
+	local temp=avatarSystem:loadSourcesFromAssetBundle("target")
 	target=avatarSystem:TypeChange(unity.Object.Instantiate(temp))
 	avatarSystem.target=target
 	avatarSystem.targetHips=avatarSystem:getBonesFromObj(target)
+	local dataPart={"eyes","hair","top","pants","shoes","face"}
+	local dataNum={"1","1","1","1","1","1"}
 	targetMesh=avatarSystem.targetMesh
-	targetDatas=avatarSystem.targetDatas
-	sourceTransform=sourcesGameObject:GetComponent("Transform")
-	avatarSystem.sourceTransform=sourceTransform
-	sourcesGameObject:SetActive(false)
-	
+	targetStr=avatarSystem.targetDatas
+	avatarSystem:configCharater(dataPart,dataNum)
+
+
 end
 
-function loadSkinnedInfo(sourceTran,datas,targetS,smr)
-	if sourceTran==nil then
-		return
-	end
-	datas:Clear()
-	smr:Clear()
-	local sm=sourceTran:GetComponentsInChildren(typeof(unity.SkinnedMeshRenderer))
-	for i=0,sm.Length-1,1 do
-		local v=sm[i]
-		names=split(v.name,'-')
-		if(datas:ContainsKey(names[1])==false) then
-			local partGo=unity.GameObject()
-			partGo.name=names[1]
-			partGo.transform.parent=target.transform
-			smr:Add(names[1],partGo:AddComponent(typeof(unity.SkinnedMeshRenderer)))
-			datas:Add(names[1],avatarSystem:getDict())
-		end
-		datas:get_Item(names[1]):Add(names[2],v)
-	end
+function loadSkinnedInfo()--[[sourceTran,datas,targetS,smr]]--)
+	avatarSystem:save("prefabs.u3d");
 end
 
-function initCharacter(targetStr)
-	local len=(targetStr:GetLength(0))
-	for i = 0, len-1 do
-		avatarSystem:OnChangePeople(targetStr:GetValue(i,0),targetStr:GetValue(i,1))
-	end
-end
 
 init()

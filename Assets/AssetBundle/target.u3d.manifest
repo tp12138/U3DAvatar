@@ -1,25 +1,19 @@
 ManifestFileVersion: 0
-CRC: 2183633802
+CRC: 993877165
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6e39006e6844f59ca803f70a3d4d3f2a
+    Hash: c4147dd3da68131d25d0487594a763d2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f993205ff4cbc20151023289dc8ba201
+    Hash: 907ad4cacd349b6eefdedf4ef0ad0ab2
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
   Script: {instanceID: 0}
-- Class: 21
-  Script: {instanceID: 0}
 - Class: 28
-  Script: {instanceID: 0}
-- Class: 43
-  Script: {instanceID: 0}
-- Class: 48
   Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
@@ -30,8 +24,6 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 - Class: 136
-  Script: {instanceID: 0}
-- Class: 137
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -59,7 +51,6 @@ Assets:
 - Assets/Resources/top-2.jpg
 - Assets/Resources/pants-5.jpg
 - Assets/Resources/eyes-2.jpg
-- Assets/Prefabs/FemaleModel Variant.prefab
 - Assets/Resources/pants-3.jpg
 - Assets/Resources/top-6.jpg
 - Assets/Resources/pants-6.jpg

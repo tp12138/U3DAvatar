@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 2525087430
+CRC: 3837027320
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: target.u3d
+      Dependencies: {}
+    Info_1:
+      Name: prefabs.u3d
       Dependencies: {}
