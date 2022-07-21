@@ -66,7 +66,6 @@ public class AvatarSystem : MonoBehaviour
         skinnedSources.Clear();
         targetMesh.Clear();
         SkinnedMeshRenderer[] res = this.loadAllSourcesFromAssetBundle(prefabName);
-        //Debug.Log(res.Length);
         foreach (var t in res)
         {
             string[] names = t.name.Split('-');
@@ -81,6 +80,7 @@ public class AvatarSystem : MonoBehaviour
             skinnedSources[names[0]].Add(names[1], t);
         }
         targetHipsDict = new Dictionary<string, Transform>();
+        //保存目标骨架身上,名字到骨骼的映射,直接查找
         foreach (var t in targetHips)
             targetHipsDict.Add(t.name, t);
             
@@ -88,8 +88,26 @@ public class AvatarSystem : MonoBehaviour
 
     //更换服装
      void changeMesh(string part, string num)
-    {    
+    {
+        if (skinnedSources.ContainsKey(part) == false)
+        {
+            Debug.LogError("part name error " + part);
+            return;
+        }
+        else
+        {
+            if (skinnedSources[part].ContainsKey(num) == false)
+            {
+                Debug.LogError("the part :" + part + ",do not have num:" + num);
+                return;
+            }
+        }
         SkinnedMeshRenderer smrTemp = skinnedSources[part][num];
+        if (smrTemp == null)
+        {
+            Debug.LogError("not config skinnedMesh");
+            return;
+        }
         List<Transform> bones = new List<Transform>();
         foreach (var trans in smrTemp.bones)
            if (targetHipsDict.ContainsKey(trans.name))

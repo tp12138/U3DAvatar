@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6470916239102423523
+--- !u!1 &8124634973452834503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 846641667766805836}
-  - component: {fileID: 4663114838217492833}
+  - component: {fileID: 447568325932198984}
+  - component: {fileID: 1391704586809742961}
   m_Layer: 0
   m_Name: hair-2
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &846641667766805836
+--- !u!4 &447568325932198984
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470916239102423523}
+  m_GameObject: {fileID: 8124634973452834503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &4663114838217492833
+--- !u!137 &1391704586809742961
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470916239102423523}
+  m_GameObject: {fileID: 8124634973452834503}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,12 +75,12 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300046, guid: 789930eedf826ae45a21ba60798ff86d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: c702937ab094c8f478fc3314dc5c879e, type: 2}
   m_Bones:
-  - {fileID: 400024, guid: 789930eedf826ae45a21ba60798ff86d, type: 3}
+  - {fileID: 5912766561434510057, guid: 038d2a54ef5a3ef448212e6c81362e3f, type: 3}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 400024, guid: 789930eedf826ae45a21ba60798ff86d, type: 3}
+  m_RootBone: {fileID: 5912766561434510057, guid: 038d2a54ef5a3ef448212e6c81362e3f, type: 3}
   m_AABB:
-    m_Center: {x: -0.117008716, y: -0.027811736, z: 0.0020468235}
-    m_Extent: {x: 0.20832527, y: 0.21046585, z: 0.17643793}
+    m_Center: {x: 0.027859543, y: 1.4318315, z: -0.01265072}
+    m_Extent: {x: 0.21107584, y: 0.22391994, z: 0.19550061}
   m_DirtyAABB: 0

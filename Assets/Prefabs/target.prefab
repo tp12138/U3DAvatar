@@ -101,9 +101,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5913023021232528565}
-  - component: {fileID: 6022096802372449157}
   - component: {fileID: 7603748446343053268}
   - component: {fileID: 2818576411556178656}
+  - component: {fileID: 2684598018468668444}
   m_Layer: 0
   m_Name: target
   m_TagString: Player
@@ -126,27 +126,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 168.477, z: 0}
---- !u!111 &6022096802372449157
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915503294998566089}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: c7f3759b70e79094bbc1539ec622e48e, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: c7f3759b70e79094bbc1539ec622e48e, type: 3}
-  - {fileID: -4107732792428805174, guid: d376e0ef92fd6764ea5c39c7eead1b7a, type: 3}
-  - {fileID: 5021562327068027978, guid: 11e924b1c9a8b0949ac9b4f0739366bd, type: 3}
-  - {fileID: -2918779493446665775, guid: 19e3aa0e74c02d9448ae08b187fad7d3, type: 3}
-  - {fileID: 7400000, guid: 3cc7290bfd13db44fa9cb68ddaa3028f, type: 3}
-  - {fileID: 3406798060444347117, guid: f81125c2f2f650143b2a3ed37e780ed3, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!136 &7603748446343053268
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -174,6 +153,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 5
+--- !u!111 &2684598018468668444
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915503294998566089}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ac67f34c306e80e45a958c925a3b9da5, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ac67f34c306e80e45a958c925a3b9da5, type: 2}
+  - {fileID: 7400000, guid: 443b5d6cc759bc946806c75fd27bac2a, type: 2}
+  - {fileID: 7400000, guid: 02e3b0087d615a04aa82b7a1b5224c2a, type: 2}
+  - {fileID: 7400000, guid: f4c8464c5bde1704eb428b97a50ce7bb, type: 2}
+  - {fileID: 7400000, guid: 14447aa4061cbb040852d175393baf4b, type: 2}
+  - {fileID: 7400000, guid: 9ee9b34a2cb4c7e4f86c10bf1f341cf0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5915511951967370091
 GameObject:
   m_ObjectHideFlags: 0
