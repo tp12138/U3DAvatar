@@ -9,7 +9,9 @@ function init()
 	localData.datas=dat
 	self.datas=dat
 	loadAssets(6,3,80,1,"item")
-	localData.scrollRect.onValueChanged:AddListener(function() scrollRect:GetComponent("ScrollRectDemoByXlua"):onRecordDrag() end)
+	localData.scrollRect.onValueChanged:AddListener(function() 
+			scrollRect:GetComponent("ScrollRectDemoByXlua"):onRecordDrag() 
+	end)
 	setRecord()
 end
 
@@ -26,7 +28,6 @@ function loadAssets(row1,col1,itemWidt1,chink1,prefabName)
 	if emp==itemWidt1 then localData.itemWidth=temp
 	else localData.itemWidth=itemWidt1
 	end
-	---self.itemWidth=localData.itemWidth
 	localData.cell=localData.chink+localData.itemWidth
 	self.cell=localData.cell
 	localData.isDragIng=false
@@ -42,6 +43,7 @@ function setRecordAndGrid()
 	end
 	localData.isLoadingRecord=true
 	self.datas=avatarSystem:getAllMeshNameOfPart(self.partName)
+	--print(self.datas.Count)
 	localData.datas=self.datas
 	local count=localData.datas.Count
 	h=count/localData.col*localData.cell
@@ -88,15 +90,14 @@ function setRecordItem(index,go)
 	goRect.pivot=unity.Vector2(0.5,1)
 	local x=((index)%localData.col)*localData.cell+localData.cell/2
 	local y=getPos_Y(index)
+	
 	goRect.anchoredPosition3D=unity.Vector3(x,y,0)
 	goRect.sizeDelta=unity.Vector2(localData.itemWidth*2,localData.itemWidth*2)
 	--enable the item
 	go:SetActive(true)
 	go.name=localData.datas[index]
-	local sprit=avatarSystem:loadSourcesFromAssetBundle(localData.datas[index],typeof(unity.Sprite))
-	--print(localData.datas[index].."is ok:")
-	--print(sprit)
-	go:GetComponent("Image").sprite=avatarSystem:TypeChangeToSprite(sprit)
+	local sprit=avatarSystem:loadSpriteFromAssetBundle(localData.datas[index])
+	go:GetComponent("Image").sprite=sprit
 	go:GetComponent("Toggle").group=localData.scrollRect:GetComponent("ToggleGroup")
 end
 --clear grid and items

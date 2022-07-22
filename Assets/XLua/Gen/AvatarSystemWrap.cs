@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(AvatarSystem);
-			Utils.BeginObjectRegister(type, L, translator, 0, 13, 8, 8);
+			Utils.BeginObjectRegister(type, L, translator, 0, 14, 8, 8);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "LoadLuaScript", _m_LoadLuaScript);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "initCharacter", _m_initCharacter);
@@ -30,12 +30,13 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnChangePeople", _m_OnChangePeople);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "getAllMeshNameOfPart", _m_getAllMeshNameOfPart);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "LoadAssetBundle", _m_LoadAssetBundle);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "loadSpriteFromAssetBundle", _m_loadSpriteFromAssetBundle);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "loadSourcesFromAssetBundle", _m_loadSourcesFromAssetBundle);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "loadAllSourcesFromAssetBundle", _m_loadAllSourcesFromAssetBundle);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "TypeChange", _m_TypeChange);
-			Utils.RegisterFunc(L, Utils.METHOD_IDX, "TypeChangeToSprite", _m_TypeChangeToSprite);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "getDict", _m_getDict);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "getBonesFromObj", _m_getBonesFromObj);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "removeMesh", _m_removeMesh);
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "skinnedSources", _g_get_skinnedSources);
@@ -305,7 +306,7 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_loadSourcesFromAssetBundle(RealStatePtr L)
+        static int _m_loadSpriteFromAssetBundle(RealStatePtr L)
         {
 		    try {
             
@@ -315,26 +316,12 @@ namespace XLua.CSObjectWrap
                 AvatarSystem gen_to_be_invoked = (AvatarSystem)translator.FastGetCSObj(L, 1);
             
             
-			    int gen_param_count = LuaAPI.lua_gettop(L);
-            
-                if(gen_param_count == 2&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)) 
+                
                 {
                     string _sourceName = LuaAPI.lua_tostring(L, 2);
                     
-                        var gen_ret = gen_to_be_invoked.loadSourcesFromAssetBundle( _sourceName );
-                        translator.PushAny(L, gen_ret);
-                    
-                    
-                    
-                    return 1;
-                }
-                if(gen_param_count == 3&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)&& translator.Assignable<System.Type>(L, 3)) 
-                {
-                    string _sourceName = LuaAPI.lua_tostring(L, 2);
-                    System.Type _type = (System.Type)translator.GetObject(L, 3, typeof(System.Type));
-                    
-                        var gen_ret = gen_to_be_invoked.loadSourcesFromAssetBundle( _sourceName, _type );
-                        translator.PushAny(L, gen_ret);
+                        var gen_ret = gen_to_be_invoked.loadSpriteFromAssetBundle( _sourceName );
+                        translator.Push(L, gen_ret);
                     
                     
                     
@@ -345,7 +332,34 @@ namespace XLua.CSObjectWrap
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             
-            return LuaAPI.luaL_error(L, "invalid arguments to AvatarSystem.loadSourcesFromAssetBundle!");
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_loadSourcesFromAssetBundle(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                AvatarSystem gen_to_be_invoked = (AvatarSystem)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    string _sourceName = LuaAPI.lua_tostring(L, 2);
+                    
+                        var gen_ret = gen_to_be_invoked.loadSourcesFromAssetBundle( _sourceName );
+                        translator.PushAny(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
             
         }
         
@@ -408,35 +422,6 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_TypeChangeToSprite(RealStatePtr L)
-        {
-		    try {
-            
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-            
-            
-                AvatarSystem gen_to_be_invoked = (AvatarSystem)translator.FastGetCSObj(L, 1);
-            
-            
-                
-                {
-                    object __object = translator.GetObject(L, 2, typeof(object));
-                    
-                        var gen_ret = gen_to_be_invoked.TypeChangeToSprite( __object );
-                        translator.Push(L, gen_ret);
-                    
-                    
-                    
-                    return 1;
-                }
-                
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_getDict(RealStatePtr L)
         {
 		    try {
@@ -481,6 +466,36 @@ namespace XLua.CSObjectWrap
                     
                         var gen_ret = gen_to_be_invoked.getBonesFromObj( _tar );
                         translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_removeMesh(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                AvatarSystem gen_to_be_invoked = (AvatarSystem)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    string _part = LuaAPI.lua_tostring(L, 2);
+                    string _num = LuaAPI.lua_tostring(L, 3);
+                    
+                        var gen_ret = gen_to_be_invoked.removeMesh( _part, _num );
+                        LuaAPI.lua_pushboolean(L, gen_ret);
                     
                     
                     

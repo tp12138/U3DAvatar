@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 993877165
+CRC: 89768848
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c4147dd3da68131d25d0487594a763d2
+    Hash: cc0738b786c316c94f38e212b2fa37d7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 907ad4cacd349b6eefdedf4ef0ad0ab2
+    Hash: bc9a1fe7b1db5283e95b018c6ea3c502
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,36 +25,34 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
-- Class: 213
-  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Resources/top-4.jpg
-- Assets/Resources/hair-3.jpg
-- Assets/Resources/pants-2.jpg
-- Assets/Resources/hair-4.jpg
-- Assets/Resources/top-5.jpg
-- Assets/Resources/hair-2.jpg
-- Assets/Resources/shoes-3.jpg
-- Assets/Resources/shoes-2.jpg
-- Assets/Resources/shoes-6.jpg
-- Assets/Resources/shoes-4.jpg
-- Assets/Resources/hair-5.jpg
-- Assets/Resources/top-1.jpg
-- Assets/Resources/eyes-3.jpg
-- Assets/Resources/shoes-1.jpg
-- Assets/Resources/hair-6.jpg
-- Assets/Resources/top-3.jpg
-- Assets/Resources/eyes-1.jpg
-- Assets/Resources/hair-1.jpg
-- Assets/Resources/shoes-5.jpg
-- Assets/Resources/top-2.jpg
-- Assets/Resources/pants-5.jpg
-- Assets/Resources/eyes-2.jpg
-- Assets/Resources/pants-3.jpg
-- Assets/Resources/top-6.jpg
-- Assets/Resources/pants-6.jpg
-- Assets/Resources/pants-4.jpg
-- Assets/Resources/pants-1.jpg
-- Assets/Prefabs/target.prefab
+- Assets/Resources/sprite/top-4.jpg
+- Assets/Resources/sprite/hair-5.jpg
+- Assets/Resources/sprite/pants-2.jpg
+- Assets/Resources/sprite/top-5.jpg
+- Assets/Resources/sprite/top-1.jpg
+- Assets/Resources/sprite/shoes-3.jpg
+- Assets/Resources/sprite/shoes-6.jpg
+- Assets/Resources/sprite/shoes-1.jpg
+- Assets/Resources/sprite/shoes-2.jpg
+- Assets/Resources/sprite/hair-4.jpg
+- Assets/Resources/sprite/shoes-4.jpg
+- Assets/Resources/sprite/eyes-2.jpg
+- Assets/Resources/sprite/eyes-1.jpg
+- Assets/Resources/sprite/hair-3.jpg
+- Assets/Resources/sprite/hair-1.jpg
+- Assets/Resources/sprite/pants-4.jpg
+- Assets/Resources/sprite/pants-3.jpg
+- Assets/Resources/sprite/top-3.jpg
+- Assets/Resources/sprite/pants-6.jpg
+- Assets/Resources/sprite/pants-5.jpg
+- Assets/Resources/sprite/shoes-5.jpg
+- Assets/Resources/sprite/top-2.jpg
+- Assets/Resources/sprite/hair-2.jpg
+- Assets/Resources/sprite/top-6.jpg
+- Assets/Resources/sprite/pants-1.jpg
+- Assets/Resources/sprite/hair-6.jpg
+- Assets/Resources/sprite/eyes-3.jpg
+- Assets/Sources/Character/characters/Female/target.prefab
 Dependencies: []

@@ -71,6 +71,8 @@ public class ScrollRectDemo : MonoBehaviour
         int temp = (int)item.GetComponent<RectTransform>().rect.size.x;
         itemWidth = temp == itemWidth1 ? temp : itemWidth1;
         cell = itemWidth + chink;
+      
+        
     }
 
     /// <summary>

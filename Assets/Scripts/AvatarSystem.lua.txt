@@ -33,7 +33,7 @@ function initSource()
 
 end
 
-function loadSkinnedInfo()--[[sourceTran,datas,targetS,smr]]--)
+function loadSkinnedInfo()
 	avatarSystem:save("prefabs.u3d");
 end
 

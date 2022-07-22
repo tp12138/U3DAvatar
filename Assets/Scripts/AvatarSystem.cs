@@ -27,6 +27,12 @@ public class AvatarSystem : MonoBehaviour
     [HideInInspector]
     public List<SkinnedMeshRenderer> sourceSKinnedMesh;
 
+    /// <summary>
+    /// 生成部位->编号->具体SkinnedMesh的字典
+    /// 生成身体部位与其对应的SkinnedMesh的字典
+    /// 加载lua文件并且运行
+    /// 初始化目标角色的Mesh
+    /// </summary>
     void Awake()
     {
         _instance = this;
@@ -37,16 +43,16 @@ public class AvatarSystem : MonoBehaviour
         luaEnv.AddLoader(LoadLuaScript);
         luaEnv.DoString("require'AvatarSystem'");
         initCharacter();
+        
 
     }
-    void Start()
-    {    
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
+    /// <summary>
+    /// lua文件转载器
+    /// </summary>
+    /// <param name="filename">要装载的lua模块名</param>
+    /// <returns></returns>
     public byte[] LoadLuaScript(ref string filename)
     {
         string path = Application.dataPath + "/Scripts/" + filename + ".lua.txt";
@@ -54,12 +60,21 @@ public class AvatarSystem : MonoBehaviour
    
     }
 
+    /// <summary>
+    /// 初始化角色的各个部件mesh
+    /// </summary>
     public void initCharacter()
     {
         for (int i = 0; i < targetDatas.GetLength(0);i++ )
             OnChangePeople(targetDatas[i,0],targetDatas[i,1]);
     }
 
+    /// <summary>
+    /// 从资源文件中将所有资源保存到对应的字典中
+    /// 根据资源中的部位,再场景的目标骨架中生成对应的部位
+    /// 并且保存骨架中,骨骼名字到骨骼的映射
+    /// </summary>
+    /// <param name="prefabName">assetBundle包名</param>
     [LuaCallCSharp]
     public void save(string prefabName)
     {
@@ -80,13 +95,17 @@ public class AvatarSystem : MonoBehaviour
             skinnedSources[names[0]].Add(names[1], t);
         }
         targetHipsDict = new Dictionary<string, Transform>();
-        //保存目标骨架身上,名字到骨骼的映射,直接查找
+        //保存目标骨架身上从名字到骨骼的映射,直接查找
         foreach (var t in targetHips)
             targetHipsDict.Add(t.name, t);
             
     }
 
-    //更换服装
+    /// <summary>
+    /// 根据对应的部位和要更新的模型编号,替换人物对应部位的Mesh
+    /// </summary>
+    /// <param name="part">部位</param>
+    /// <param name="num">部位编号</param>
      void changeMesh(string part, string num)
     {
         if (skinnedSources.ContainsKey(part) == false)
@@ -112,14 +131,21 @@ public class AvatarSystem : MonoBehaviour
         foreach (var trans in smrTemp.bones)
            if (targetHipsDict.ContainsKey(trans.name))
                bones.Add(targetHipsDict[trans.name]);
-
+         //替换SkinnedMesh
         targetMesh[part].material = smrTemp.sharedMaterial;
         targetMesh[part].bones = bones.ToArray();
         targetMesh[part].sharedMesh = smrTemp.sharedMesh;
         targetMesh[part].rootBone = smrTemp.rootBone;
         saveData(part, num, targetDatas);
     }
-    //保存当前目标身上的服装信息
+    
+
+    /// <summary>
+    /// 再目标信息保存的二维数组上保存,对应部位的编号
+    /// </summary>
+    /// <param name="part">部位</param>
+    /// <param name="num">编号</param>
+    /// <param name="targetStr">目标部位信息数组</param>
     void saveData(string part, string num, string[,] targetStr)
     {
         int length = targetStr.GetLength(0);//获得行数
@@ -133,11 +159,16 @@ public class AvatarSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 根据配置来的部位数组和对应部位的编号数组配置初始的角色部位编号
+    /// </summary>
+    /// <param name="part">部位</param>
+    /// <param name="num">编号</param>
     [LuaCallCSharp]
     public void configCharater(string[] part, string[] num)
     {
         int length=targetDatas.GetLength(0);
-       // Debug.Log(part.Length);
+
         for (int i = 0; i < length; i++)
             {
                 targetDatas[i, 0] = part[i];
@@ -155,35 +186,51 @@ public class AvatarSystem : MonoBehaviour
     public List<string> getAllMeshNameOfPart(string partName)
     {
         List<string> temp = new List<string>();
-        SkinnedMeshRenderer[] skinnedMeshs = this.loadAllSourcesFromAssetBundle("prefabs.u3d"); //this.sourceTransform.GetComponentsInChildren<SkinnedMeshRenderer>();
-       foreach (var mesh in skinnedMeshs)
+        foreach (KeyValuePair<string, SkinnedMeshRenderer> t in skinnedSources[partName])
         {
-           string[] str = mesh.name.Split('-');
-           if(str[0].Equals(partName))
-             temp.Add(mesh.name);   
+            temp.Add(t.Value.name);
         }
         return temp;
     }
+    /// <summary>
+    /// 根据assetbundle包的名字加载AssetBundle包
+    /// </summary>
+    /// <param name="bundleName">包名字</param>
+    /// <returns></returns>
     [LuaCallCSharp]
     public AssetBundle LoadAssetBundle(string bundleName)
     {
         return AssetBundle.LoadFromFile(Application.dataPath + "/AssetBundle/" + bundleName);
     }
+    /// <summary>
+    /// 根据资源名字和类型,加载资源
+    /// </summary>
+    /// <param name="sourceName">资源名字</param>
+    /// <param name="type">资源类型</param>
+    /// <returns></returns>
     [LuaCallCSharp]
-    public System.Object loadSourcesFromAssetBundle(string sourceName,Type type)
+    public Sprite loadSpriteFromAssetBundle(string sourceName)
     {
-        var obj = ab.LoadAsset(sourceName,type);
-        return obj;
+        Texture2D ass = ab.LoadAsset<Texture2D>(sourceName+".jpg");
+        Sprite mySprite = Sprite.Create(ass, new Rect(0.0f, 0.0f, ass.width,ass.height), new Vector2(0.5f, 0.5f), 100.0f);
+        return mySprite;
     }
+    /// <summary>
+    /// 根据资源的名字,从assetbundle包中加载资源
+    /// </summary>
+    /// <param name="sourceName">资源名字</param>
+    /// <returns></returns>
     [LuaCallCSharp]
     public System.Object loadSourcesFromAssetBundle(string sourceName)
     {
         var obj = ab.LoadAsset(sourceName);
         return obj;
     }
-
-
-
+   /// <summary>
+   /// 从资源包中获取其中所有的SkinnedMeshRenderer组件
+   /// </summary>
+   /// <param name="AssetBundleName">资源包名字</param>
+   /// <returns></returns>
     public SkinnedMeshRenderer[] loadAllSourcesFromAssetBundle(string AssetBundleName)
     {
         if(prefabsAb==null)
@@ -201,18 +248,40 @@ public class AvatarSystem : MonoBehaviour
         }
         return sourceSKinnedMesh.ToArray();
     }
+    /// <summary>
+    /// 将对象转变为GameObject类型
+    /// </summary>
+    /// <param name="_object">要改变的对象</param>
+    /// <returns></returns>
     public GameObject TypeChange(object _object) { return (GameObject)_object; }
-    public Sprite TypeChangeToSprite(System.Object _object) { return (Sprite)_object; }
+    /// <summary>
+    /// 生成字符串到SkinnedMeshRenderer的字典
+    /// </summary>
+    /// <returns></returns>
     [LuaCallCSharp]
     public Dictionary<string, SkinnedMeshRenderer> getDict()
     {
         return new Dictionary<string, SkinnedMeshRenderer>();
     }
+   /// <summary>
+   /// 获取某个物体下的全部Transform组件
+   /// </summary>
+   /// <param name="tar"></param>
+   /// <returns></returns>
     [LuaCallCSharp]
     public Transform[] getBonesFromObj(GameObject tar)
     {
         return tar.GetComponentsInChildren<Transform>();
     }
-
-
+    /// <summary>
+    /// 从保存资源的字典中,移除某个部位某个编号的部件
+    /// </summary>
+    /// <param name="part">部位</param>
+    /// <param name="num">编号</param>
+    /// <returns></returns>
+    public bool removeMesh(string part, string num)
+    {
+        bool res=skinnedSources[part].Remove(num);
+        return res;
+    }
 }

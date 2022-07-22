@@ -1,10 +1,10 @@
-<GlobalConfig CodeFontSize = "19"/>
+<GlobalConfig CodeFontSize = "18"/>
 <BreakpointList/>
 <WatchList/>
 <ProjectUI>
-  <TreeState BaseX = "0" BaseY = "0" AlternativeItem = "LuaFolders#Assets#Sources">
+  <TreeState BaseX = "0" BaseY = "0" AlternativeItem = "LuaFolders#Assets#Scripts#ScrollRectDemoByXLua.lua.txt">
     <SelectedList>
-      <Selected Path = "LuaFolders#Assets#Scripts#ScrollRectDemoByXLua.lua.txt"/>
+      <Selected Path = "LuaFolders#Assets#Scripts#AvatarSystem.lua.txt"/>
     </SelectedList>
     <ExpandedList>
       <Expanded Path = "LuaFolders"/>
@@ -14,45 +14,45 @@
   </TreeState>
 </ProjectUI>
 <FindAnReplaceUI
-  Pattern = "eeyes"
+  Pattern = "print"
   MatchCase = "false"
   MatchWholeWord = "true"
   UseRegEx = "false"
   Target = ""
   Replace = ""/>
 <MainWindow
-  X = "950"
-  Y = "97"
-  Width = "960"
-  Height = "1040"
-  Maximized = "true"
-  LastCodeFilename = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt">
+  X = "432"
+  Y = "279"
+  Width = "1384"
+  Height = "1039"
+  Maximized = "false"
+  LastCodeFilename = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt">
   <DockingControl>
     <DockingNode DockingDirection = "Horizontal">
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "1606" Height = "923" DocumentStyle = "true">
+        <DockingBlock Width = "1154" Height = "922" DocumentStyle = "true">
           <DockingCard
             Text = "AvatarSystem.lua.txt"
             Tag = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt"
-            ActivePage = "true"
-            ActivateTime = "1241760021"
-            CaretLineIndex = "21"
-            CaretCodeCharIndex = "59"
+            ActivePage = "false"
+            ActivateTime = "1564373403"
+            CaretLineIndex = "36"
+            CaretCodeCharIndex = "27"
             BaseX = "0"
-            BaseY = "-171"/>
+            BaseY = "-57"/>
           <DockingCard
             Text = "ScrollRectDemoByXLua.lua.txt"
             Tag = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt"
-            ActivePage = "false"
-            ActivateTime = "1237210103"
-            CaretLineIndex = "105"
-            CaretCodeCharIndex = "14"
+            ActivePage = "true"
+            ActivateTime = "1570508328"
+            CaretLineIndex = "28"
+            CaretCodeCharIndex = "35"
             BaseX = "0"
-            BaseY = "-1425"/>
+            BaseY = "-479"/>
         </DockingBlock>
       </DockingNode>
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "295" Height = "923" DocumentStyle = "false">
+        <DockingBlock Width = "211" Height = "922" DocumentStyle = "false">
           <DockingCard
             Text = "Project"
             Tag = ""

@@ -41,7 +41,16 @@ public class ScrollRectDemoByXlua : MonoBehaviour
     void Awake()
     {
     }
-  
+    void OnEnable()
+    {
+        if (scriptEnv != null)
+        {
+            var temp = listContent.GetComponentsInChildren<Transform>();
+            for (int i = 1; i < temp.Length;i++ )
+                Destroy(temp[i].gameObject);
+           luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
+        }
+    }
     // Start is called before the first frame update
     [LuaCallCSharp]
     void Start()
@@ -134,7 +143,7 @@ public class ScrollRectDemoByXlua : MonoBehaviour
         return -sizeY;
     }
 
-
+    
     [Hotfix]
     public int getIndex(float y, int cell)
     {
