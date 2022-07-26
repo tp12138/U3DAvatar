@@ -19,7 +19,6 @@ public class ScrollRectUIView : MonoBehaviour
 
   
     [LuaCallCSharp]
-    [Hotfix]
     public int getPos_Y(int index, int col, int cell)
     {
         int sizeY = index / col * cell;

@@ -22,13 +22,13 @@ namespace XLua.CSObjectWrap
         static void wrapInit0(LuaEnv luaenv, ObjectTranslator translator)
         {
         
+            translator.DelayWrapLoader(typeof(AvatarModel), AvatarModelWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(AvatarSystem), AvatarSystemWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(ScrollRectDemoByXlua), ScrollRectDemoByXluaWrap.__Register);
-        
-        
-            translator.DelayWrapLoader(typeof(AvatarModel), AvatarModelWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(Tutorial.BaseClass), TutorialBaseClassWrap.__Register);

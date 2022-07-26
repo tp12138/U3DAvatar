@@ -2643,6 +2643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarModel: {fileID: 0}
   roleUIViev: {fileID: 0}
+  luaScript: {fileID: 4900000, guid: 30da0fa8f325e8d409ccd5e4f487ff58, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

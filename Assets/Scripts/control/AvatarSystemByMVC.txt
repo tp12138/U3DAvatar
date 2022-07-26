@@ -1,0 +1,41 @@
+unity=CS.UnityEngine
+function init()
+	initSource()
+	
+	loadSkinnedInfo()
+	--initCharacter(targetDatas)
+end
+function split(input, delimiter)
+	input = tostring(input)
+	delimiter = tostring(delimiter)
+	if (delimiter == "") then return false end
+	local pos, arr = 0, {}
+	for st, sp in function() return string.find(input, delimiter, pos, true) end do
+		table.insert(arr, string.sub(input, pos, st - 1))
+		pos = sp + 1
+	end
+	table.insert(arr, string.sub(input, pos))
+	return arr
+end
+function initSource()
+	avatarModel=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarModel")
+	avatarModel.ab=avatarModel:LoadAssetBundle("target.u3d")
+	local temp=avatarModel:loadSourcesFromAssetBundle("target")
+	target=avatarModel:TypeChange(unity.Object.Instantiate(temp))
+	avatarModel.target=target
+	avatarModel.targetHips=avatarModel:getBonesFromObj(target)
+	local dataPart={"eyes","hair","top","pants","shoes","face"}
+	local dataNum={"1","1","1","1","1","1"}
+	--targetMesh=avatarSystem.targetMesh
+	--targetStr=avatarSystem.targetDatas
+	avatarModel:configCharater(dataPart,dataNum)
+
+
+end
+
+function loadSkinnedInfo()
+	avatarModel:save("prefabs.u3d");
+end
+
+
+init()

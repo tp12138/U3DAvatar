@@ -11,6 +11,7 @@ public class AvatarControl : MonoBehaviour
     public RoleUIViev roleUIViev;
     [HideInInspector]
     public static AvatarControl _instance;
+    public TextAsset luaScript;
     public void Awake()
     {
          _instance = this;
@@ -19,21 +20,10 @@ public class AvatarControl : MonoBehaviour
         roleUIViev = gameObject.GetComponent<RoleUIViev>();
         avatarModel.init();
         LuaEnv luaEnv = new LuaEnv();
-        luaEnv.AddLoader(LoadLuaScript);
-        luaEnv.DoString("require'AvatarSystemByMVC'");
+        luaEnv.DoString(luaScript.text);
         initCharacter();
     }
-    /// <summary>
-    /// lua文件转载器
-    /// </summary>
-    /// <param name="filename">要装载的lua模块名</param>
-    /// <returns></returns>
-    public byte[] LoadLuaScript(ref string filename)
-    {
-        string path = Application.dataPath + "/Scripts/" + filename + ".lua.txt";
-        return System.Text.Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(path));
 
-    }
 
     /// <summary>
     /// 初始化角色的各个部件mesh

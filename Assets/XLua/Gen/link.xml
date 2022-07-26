@@ -3,9 +3,9 @@
 <linker>
 
 	<assembly fullname="Assembly-CSharp">
-	    <type fullname="AvatarSystem" preserve="all"/>
+	    <type fullname="AvatarModel" preserve="all"/>
+		<type fullname="AvatarSystem" preserve="all"/>
 		<type fullname="ScrollRectDemoByXlua" preserve="all"/>
-		<type fullname="AvatarModel" preserve="all"/>
 		<type fullname="Tutorial.BaseClass" preserve="all"/>
 		<type fullname="Tutorial.TestEnum" preserve="all"/>
 		<type fullname="Tutorial.DerivedClass" preserve="all"/>
