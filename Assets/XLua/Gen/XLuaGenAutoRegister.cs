@@ -28,6 +28,9 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(ScrollRectDemoByXlua), ScrollRectDemoByXluaWrap.__Register);
         
         
+            translator.DelayWrapLoader(typeof(AvatarModel), AvatarModelWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(Tutorial.BaseClass), TutorialBaseClassWrap.__Register);
         
         

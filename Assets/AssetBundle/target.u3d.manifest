@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 89768848
+CRC: 3417804510
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cc0738b786c316c94f38e212b2fa37d7
+    Hash: 1092a3fcc9d097df3e84b97851f2d804
   TypeTreeHash:
     serializedVersion: 2
     Hash: bc9a1fe7b1db5283e95b018c6ea3c502
@@ -32,13 +32,15 @@ Assets:
 - Assets/Resources/sprite/pants-2.jpg
 - Assets/Resources/sprite/top-5.jpg
 - Assets/Resources/sprite/top-1.jpg
-- Assets/Resources/sprite/shoes-3.jpg
+- Assets/Resources/sprite/face-1.jpg
+- Assets/Resources/sprite/face-2.jpg
 - Assets/Resources/sprite/shoes-6.jpg
 - Assets/Resources/sprite/shoes-1.jpg
 - Assets/Resources/sprite/shoes-2.jpg
 - Assets/Resources/sprite/hair-4.jpg
 - Assets/Resources/sprite/shoes-4.jpg
 - Assets/Resources/sprite/eyes-2.jpg
+- Assets/Resources/sprite/shoes-3.jpg
 - Assets/Resources/sprite/eyes-1.jpg
 - Assets/Resources/sprite/hair-3.jpg
 - Assets/Resources/sprite/hair-1.jpg

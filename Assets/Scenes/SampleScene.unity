@@ -264,7 +264,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: face
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &49854634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +718,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: hair
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &199564856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +865,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: eyes
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &478285029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2336,7 +2336,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: shoes
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &1263013354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2619,7 +2619,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: pants
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &1441754717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2916,7 +2916,7 @@ MonoBehaviour:
   isLoadingRecord: 0
   needDispose: []
   partName: top
-  luaScript: {fileID: 4900000, guid: 19ea72924015f0a4f94670dbd824b17b, type: 3}
+  luaScript: {fileID: 4900000, guid: 74e5387a742b9df45bbaed4fcc822505, type: 3}
 --- !u!114 &1487133854
 MonoBehaviour:
   m_ObjectHideFlags: 0

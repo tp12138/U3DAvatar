@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5913023021232528565}
   - component: {fileID: 7603748446343053268}
   - component: {fileID: 2818576411556178656}
-  - component: {fileID: -5739600422075456525}
+  - component: {fileID: -8120595630229924435}
   m_Layer: 0
   m_Name: target
   m_TagString: Player
@@ -137,9 +137,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.41
-  m_Height: 1.65
+  m_Height: 1.6728125
   m_Direction: 1
-  m_Center: {x: 0, y: 0.99, z: 0}
+  m_Center: {x: 0, y: 0.9332658, z: 0}
 --- !u!114 &2818576411556178656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 5
---- !u!111 &-5739600422075456525
+--- !u!111 &-8120595630229924435
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,12 +164,12 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: ac67f34c306e80e45a958c925a3b9da5, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 443b5d6cc759bc946806c75fd27bac2a, type: 2}
   - {fileID: 7400000, guid: 02e3b0087d615a04aa82b7a1b5224c2a, type: 2}
-  - {fileID: 7400000, guid: 14447aa4061cbb040852d175393baf4b, type: 2}
-  - {fileID: 7400000, guid: f4c8464c5bde1704eb428b97a50ce7bb, type: 2}
+  - {fileID: 7400000, guid: 443b5d6cc759bc946806c75fd27bac2a, type: 2}
   - {fileID: 7400000, guid: ac67f34c306e80e45a958c925a3b9da5, type: 2}
+  - {fileID: 7400000, guid: f4c8464c5bde1704eb428b97a50ce7bb, type: 2}
   - {fileID: 7400000, guid: 9ee9b34a2cb4c7e4f86c10bf1f341cf0, type: 2}
+  - {fileID: 7400000, guid: 14447aa4061cbb040852d175393baf4b, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

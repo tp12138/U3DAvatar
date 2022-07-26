@@ -29,7 +29,7 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     //左键点击事件,换装
     private void ButtonLeftClick()
     {
-        AvatarSystem._instance.OnChangePeople(names[0], names[1]);
+        AvatarControl._instance.OnChangePeople(names[0], names[1]);
         switch (names[0])
         {
             case "pants":
@@ -50,8 +50,8 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     //右键点击事件,删除装备
     private void ButtonRightClick()
     {
-        AvatarSystem._instance.removeMesh(names[0], names[1]);
-        Destroy(gameObject);
+        AvatarControl._instance.removeMesh(gameObject);
+        //Destroy(gameObject);
     }
     //播放动画
     public void PlayAnimation(string animName)

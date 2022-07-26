@@ -208,7 +208,7 @@ public class AvatarSystem : MonoBehaviour
     /// <param name="sourceName">资源名字</param>
     /// <param name="type">资源类型</param>
     /// <returns></returns>
-    [LuaCallCSharp]
+   // [LuaCallCSharp]
     public Sprite loadSpriteFromAssetBundle(string sourceName)
     {
         Texture2D ass = ab.LoadAsset<Texture2D>(sourceName+".jpg");

@@ -2,7 +2,7 @@
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarButton.lua.txt" ModifyTime = "1657696094130"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/BuiltInTypes.lua" ModifyTime = "1658283317344"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Resources/perf/memory.lua.txt" ModifyTime = "1658283318204"/>
-  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1658465611975"/>
+  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1658823757453"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Tutorial/LoadLuaScript/ByFile/Resources/byfile.lua.txt" ModifyTime = "1658283318218"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/LuaDebuggeeApi.lua" ModifyTime = "1658283317345"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Resources/tdr/tdr.lua.txt" ModifyTime = "1658283318204"/>
@@ -19,7 +19,7 @@
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Examples/07_AsyncTest/Resources/message_box.lua.txt" ModifyTime = "1655613223000"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Examples/10_SignatureLoader/otherfiles/signatured3.lua" ModifyTime = "1655613223000"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/XLua/Examples/02_U3DScripting/LuaTestScript.lua.txt" ModifyTime = "1655613223000"/>
-  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt" ModifyTime = "1658391166604"/>
+  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/AvatarSystem.lua.txt" ModifyTime = "1658819682025"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/AOT/MonoPInvokeCallbackAttribute.lua" ModifyTime = "1658283317345"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/AvatarButton.lua" ModifyTime = "1658283317345"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/JetBrains/Annotations/AssertionMethodAttribute.lua" ModifyTime = "1658283317345"/>
@@ -1571,5 +1571,7 @@
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/LuaDLL/Lua.lua" ModifyTime = "1658283317492"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/Utils.lua" ModifyTime = "1658283317496"/>
   <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/ObjectTranslator.lua" ModifyTime = "1658283317493"/>
-  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt" ModifyTime = "1658466605941"/>
+  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/ScrollRectDemoByXLua.lua.txt" ModifyTime = "1658821372609"/>
+  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/control/AvatarSystemByMVC.lua.txt" ModifyTime = "1658819682025"/>
+  <CheckedCodeItem Filename = "D:/u3dProject/U3DAvatar/Assets/Scripts/control/ScrollRectDemoByMVC.lua.txt" ModifyTime = "1658821372609"/>
 </CheckedCodeList>
