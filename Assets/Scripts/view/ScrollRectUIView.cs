@@ -19,6 +19,7 @@ public class ScrollRectUIView : MonoBehaviour
         SRM = transform.gameObject.GetComponent<ScrollRectModel>();
         SRC=transform.gameObject.GetComponent<ScrollRectControl>();
         SRM.setRecordItem += setRecordItem;
+        SRM.removeItem += disableItem;
     }
     [LuaCallCSharp]
     public void setRecordItem(int index,GameObject go)
@@ -39,6 +40,11 @@ public class ScrollRectUIView : MonoBehaviour
         RectTransform rtf = listContent.GetComponent<RectTransform>();
         rtf.sizeDelta = new Vector2(width, height);
         rtf.localPosition = Vector3.zero;
+    }
+
+    public void disableItem(GameObject go)
+    {
+        go.SetActive(false);
     }
     
 }

@@ -8,7 +8,7 @@ public class ScrollRectControl : MonoBehaviour
 {
    [HideInInspector]
    public ScrollRectUIView scrollView;
-    [HideInInspector]
+   [HideInInspector]
    public ScrollRectModel scrollModel;
    [HideInInspector]
    public List<string> datas = new List<string>();
