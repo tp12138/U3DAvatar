@@ -6,13 +6,30 @@ using System;
 using UnityEngine.UI;
 public class ScrollRectControl : MonoBehaviour
 {
+   [HideInInspector]
    public ScrollRectUIView scrollView;
+    [HideInInspector]
    public ScrollRectModel scrollModel;
-   // private Action<int, GameObject> setRecordItem;
+   [HideInInspector]
+   public List<string> datas = new List<string>();
+   [HideInInspector]
+   public int col;
+   [HideInInspector]
+   public int row;
+   [HideInInspector]
+   public int cell;
+   [HideInInspector]
+   public int chink;
     [HideInInspector]
     public bool isDragIng;
     [HideInInspector]
     public bool isLoadingRecord;
+    [HideInInspector]
+    public Dictionary<GameObject, int> datasAndIndex;
+    [HideInInspector]
+    public List<GameObject> needDispose;
+    [HideInInspector]
+    public GameObject item;
     [HideInInspector]
     public LuaTable scriptEnv;
     public TextAsset luaScript;
@@ -32,7 +49,6 @@ public class ScrollRectControl : MonoBehaviour
         scriptEnv.Set("listContent", scrollView.listContent);
         scriptEnv.Set("scrollRect", scrollView.scrollRect);
         luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
-        //setRecordItem = luaEnv.Global.Get<Action<int, GameObject>>("setRecordItem");
         scrollView.scrollRect.GetComponent<ScrollRect>().onValueChanged.AddListener((value) => { onRecordDrag(value.y); });
     }
     void OnEnable()
@@ -45,22 +61,39 @@ public class ScrollRectControl : MonoBehaviour
             luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void onRecordDrag(float y)
     {
         //Debug.Log(scrollModel.datas == null);
-        if (scrollModel.datas.Count < scrollModel.col * scrollModel.row) return;
+        if (scrollModel.datas.Count <col * row) return;
         if (isDragIng) return;
         isDragIng= true;
-        int indexNowRow=scrollModel.getIndex(y,scrollModel.cell);
-        scrollModel.removeUnUseItem(indexNowRow);
-        scrollModel.generaNewItem(indexNowRow);
+        int indexNowRow=getIndex(y,cell);
+        int startNum = indexNowRow * col;
+        int endNum = (indexNowRow + row) * col;
+        scrollModel.removeUnUseItem(startNum,endNum);
+        scrollModel.generaNewItem(startNum, endNum);
         isDragIng = false;
     }
 
+    public int getIndex(float y, int cell)
+    {
+        int index = 0;
+        index = (int)(y / cell);
+        if (y < 0) index = 0;
+        return index;
+    
+     }
+    public int getPos_Y(int index, int col, int cell)
+    {
+        int sizeY = index / col * cell;
+        return -sizeY;
+    }
+
+    public Vector3 getItemPosition(int index)
+    {
+        int x = (int)(index % col * cell + 0.5 * cell);
+        int y = getPos_Y(index, col, cell);
+        Vector3 vt3 = new Vector3(x, y, 0);
+        return vt3;
+    }
 }

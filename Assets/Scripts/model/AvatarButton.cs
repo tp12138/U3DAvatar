@@ -30,21 +30,7 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     private void ButtonLeftClick()
     {
         AvatarControl._instance.OnChangePeople(names[0], names[1]);
-        switch (names[0])
-        {
-            case "pants":
-                PlayAnimation("item_pants");
-                break;
-            case "shoes":
-                PlayAnimation("item_boots");
-                break;
-            case "top":
-                PlayAnimation("item_shirt");
-                break;
-            default:
-                PlayAnimation("walk");
-                break;
-        }
+       
     }
 
     //右键点击事件,删除装备
@@ -53,17 +39,4 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
         AvatarControl._instance.removeMesh(gameObject);
         //Destroy(gameObject);
     }
-    //播放动画
-    public void PlayAnimation(string animName)
-    { //换装动画名称
-
-        Animation anim = GameObject.FindWithTag("Player").GetComponent<Animation>();
-        if (!anim.IsPlaying(animName))
-        {
-            anim.Play(animName);
-            anim.PlayQueued("idle1");
-        }
-
-    }
-
 }

@@ -1,7 +1,6 @@
 unity=CS.UnityEngine
 function init()
-	initSource()
-	
+	initSource()	
 	loadSkinnedInfo()
 	--initCharacter(targetDatas)
 end
@@ -18,23 +17,22 @@ function split(input, delimiter)
 	return arr
 end
 function initSource()
+	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
 	avatarModel=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarModel")
-	avatarModel.ab=avatarModel:LoadAssetBundle("target.u3d")
-	local temp=avatarModel:loadSourcesFromAssetBundle("target")
-	target=avatarModel:TypeChange(unity.Object.Instantiate(temp))
-	avatarModel.target=target
-	avatarModel.targetHips=avatarModel:getBonesFromObj(target)
+	avatarControl.ab=avatarControl:LoadAssetBundle("target.u3d")
+	local temp=avatarControl:loadSourcesFromAssetBundle("target")
+	target=avatarControl:TypeChange(unity.Object.Instantiate(temp))
+	avatarControl.roleUIViev.target=target
+	avatarControl.roleUIViev:initTargetBones()
 	local dataPart={"eyes","hair","top","pants","shoes","face"}
 	local dataNum={"1","1","1","1","1","1"}
-	--targetMesh=avatarSystem.targetMesh
-	--targetStr=avatarSystem.targetDatas
 	avatarModel:configCharater(dataPart,dataNum)
 
 
 end
 
 function loadSkinnedInfo()
-	avatarModel:save("prefabs.u3d");
+	avatarControl:save("prefabs.u3d");
 end
 
 

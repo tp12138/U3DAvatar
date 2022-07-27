@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1786303824
+CRC: 2048182242
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f71d2c8a5dde8b44f2bbfe36afad33a6
+    Hash: 18d08a0666dd4714d4967944c0aab169
   TypeTreeHash:
     serializedVersion: 2
     Hash: b711b081aad74d862a85017c6fafc275
@@ -55,4 +55,4 @@ Assets:
 - Assets/Prefabs/pants-3.prefab
 - Assets/Prefabs/shoes-6.prefab
 Dependencies:
-- D:/u3dProject/U3DAvatar/Assets/AssetBundle/target.u3d
+- D:/githubTemp/U3DAvatar/Assets/AssetBundle/target.u3d

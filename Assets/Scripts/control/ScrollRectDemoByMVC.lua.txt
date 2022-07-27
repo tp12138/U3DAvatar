@@ -2,7 +2,7 @@
 unity=CS.UnityEngine
 localData={}
 function init()
-	avatarModel=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarModel")
+	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
 	localData._needDispose={}
 	localData.scrollRect=scrollRect:GetComponent("ScrollRect")
 	localData.listContent=listContent
@@ -16,16 +16,16 @@ function loadAssets(row1,col1,itemWidth1,chink1,prefabName)
 	localData.item=unity.Resources.Load(prefabName)
 	self.scrollModel.item=localData.item
 	localData.row=row1
-	self.scrollModel.row=row1
+	self.row=row1
 	localData.col=col1
-	self.scrollModel.col=col1
+	self.col=col1
 	localData.chink=chink1
-	self.scrollModel.chink=chink1
+	self.chink=chink1
 	--temp=localData.item:GetComponent("RectTransform").rect.size.x
 	localData.itemWidth=itemWidth1
 	self.scrollModel.itemWidth=itemWidth1
 	localData.cell=localData.chink+localData.itemWidth
-	self.scrollModel.cell=localData.cell
+	self.cell=localData.cell
 	localData.isDragIng=false
 	self.isDragIng=false
 	localData.isLoadingRecord=false
@@ -38,7 +38,7 @@ function setRecordAndGrid()
 		coroutine.yield()
 	end
 	localData.isLoadingRecord=true
-	self.scrollModel.datas=avatarModel:getAllMeshNameOfPart(self.scrollView.partName)
+	self.scrollModel.datas=avatarControl:getAllMeshNameOfPart(self.scrollView.partName)
 
 	--print(self.scrollModel.datas.Count)
 	localData.datas=self.scrollModel.datas
@@ -47,9 +47,10 @@ function setRecordAndGrid()
 	if count%localData.col~=0 then
 		h=h+localData.cell
 	end
+	self.scrollView:setContent(localData.col*localData.cell,h)
 	local rectTransform=localData.listContent:GetComponent("RectTransform")
-	rectTransform.sizeDelta=unity.Vector2(localData.col*localData.cell,h)
-	rectTransform.localPosition=unity.Vector3(0,0,0)
+	--rectTransform.sizeDelta=unity.Vector2(localData.col*localData.cell,h)
+	--rectTransform.localPosition=unity.Vector3(0,0,0)
 	localData.isDragIng=true
 	local temCount
 	if count>=localData.row*localData.col then
@@ -61,7 +62,7 @@ function setRecordAndGrid()
 	for i = 0, temCount-1,1 do
 		local go=CS.UnityEngine.Object.Instantiate(localData.item,unity.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
 		go.transform:SetParent(rectTransform)
-		self.scrollView:setRecordItem(i,go,self.scrollModel)
+		self.scrollView:setRecordItem(i,go)
 	end
 	localData.isDragIng=false
 	self.isDragIng=false
@@ -85,19 +86,4 @@ function clearRecord()
 	localData.datasAndIndex={}
 end
 
---Get the posY of item by the index of item
-function getPos_Y(index)
-	local sizeY=index//localData.col*localData.cell
-	return (0-sizeY)
-end
-
---Get the index of first item in first line by y
-function getIndex(y)
-	local index=0
-	index=y//localData.cell
-	if index<0 then
-		index=0
-	end
-	return index
-end
 init()

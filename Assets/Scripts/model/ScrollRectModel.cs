@@ -6,18 +6,13 @@ public class ScrollRectModel : MonoBehaviour
 {
     [HideInInspector]
     public List<string> datas = new List<string>();
-    [HideInInspector]
-    public int col;
-    [HideInInspector]
-    public int row;
-    [HideInInspector]
-    public int cell;
-    [HideInInspector]
-    public int chink;
+    
     [HideInInspector]
     public Dictionary<GameObject, int> datasAndIndex;
     [HideInInspector]
-    private Action<int, GameObject> setRecordItem;
+    public Action<int, GameObject> setRecordItem;
+    [HideInInspector]
+    public Action<GameObject> removeItem;
     [HideInInspector]
     public List<GameObject> needDispose;
     [HideInInspector]
@@ -37,11 +32,11 @@ public class ScrollRectModel : MonoBehaviour
     /// 标识当前地板中的元素,并回收不该显示的元素
     /// </summary>
     /// <param name="indexNowRow"></param>
-    public void removeUnUseItem(int indexNowRow)
+    public void removeUnUseItem(int startNum,int endNum)
     {
         foreach (var go in datasAndIndex.Keys)
         {
-            if (datasAndIndex[go] >= indexNowRow * col && datasAndIndex[go] < (indexNowRow + row) * col)
+            if (datasAndIndex[go] >= startNum  && datasAndIndex[go] <=endNum)
             {
                 //没超出范围,不回收
                 continue;
@@ -56,7 +51,7 @@ public class ScrollRectModel : MonoBehaviour
         {
             datasAndIndex.Remove(go);
             //隐藏
-            go.SetActive(false);
+            removeItem(go);
         }
     }
 
@@ -64,9 +59,9 @@ public class ScrollRectModel : MonoBehaviour
     /// 刷新地板上的元素,重新生成新元素
     /// </summary>
     /// <param name="indexNowRow"></param>
-    public void generaNewItem(int indexNowRow)
+    public void generaNewItem(int startNum, int endNum)
     {
-        for (int i = indexNowRow * col; i < (indexNowRow + row) * col; i++)
+        for (int i = startNum; i <= endNum; i++)
         {
             if (datasAndIndex.ContainsValue(i))
             {
@@ -89,15 +84,5 @@ public class ScrollRectModel : MonoBehaviour
                 }
             }
         }
-    }
-
-    // Update is called once per frame
-
-    public int getIndex(float y, int cell)
-    {
-        int index = 0;
-        index = (int)(y / cell);
-        if (y < 0) index = 0;
-        return index;
     }
 }

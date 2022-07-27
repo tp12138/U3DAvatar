@@ -2599,6 +2599,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarModel: {fileID: 0}
   avatarControl: {fileID: 0}
+  target: {fileID: 0}
+  targetHips: []
 --- !u!4 &936806551
 Transform:
   m_ObjectHideFlags: 0
@@ -2625,10 +2627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e82f18cccf4a446b353314088ee8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetHips: []
-  ab: {fileID: 0}
-  sourceSkinnedMesh: []
 --- !u!114 &936806553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2643,7 +2641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarModel: {fileID: 0}
   roleUIViev: {fileID: 0}
-  luaScript: {fileID: 4900000, guid: 30da0fa8f325e8d409ccd5e4f487ff58, type: 3}
+  ab: {fileID: 0}
+  luaScript: {fileID: 4900000, guid: 88f3e8f8ee69f944db29aa367f313bd0, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

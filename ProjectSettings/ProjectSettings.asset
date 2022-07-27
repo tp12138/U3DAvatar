@@ -153,6 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany.U3DAvatar
     Standalone: com.DefaultCompany.U3DAvatar
   buildNumber:
     Standalone: 0
@@ -592,6 +593,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: HOTFIX_ENABLE;INJECT_WITHOUT_TOOL
+    7: HOTFIX_ENABLE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
