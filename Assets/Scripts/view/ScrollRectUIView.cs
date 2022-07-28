@@ -30,6 +30,10 @@ public class ScrollRectUIView : MonoBehaviour
         rt.sizeDelta = new Vector2(SRM.itemWidth * 2, SRM.itemWidth * 2);
         go.SetActive(true);
         go.name = SRM.datas[index];
+        AvatarButton ab = go.GetComponent<AvatarButton>();
+        ab.onButtonLeftClick += AvatarControl._instance.OnChangePeople;
+        ab.onButtonRightClick += AvatarControl._instance.removeMesh;
+        ab.onButtonRightClick += SRM.deleteItem;
         Sprite sprit = AvatarControl._instance.loadSpriteFromAssetBundle(go.name);
         go.GetComponent<Image>().sprite = sprit;
         go.GetComponent<Toggle>().group = scrollRect.GetComponent<ToggleGroup>();

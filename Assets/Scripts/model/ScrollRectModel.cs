@@ -85,4 +85,9 @@ public class ScrollRectModel : MonoBehaviour
             }
         }
     }
+
+    public void deleteItem(GameObject go)
+    {
+        removeItem(go);
+    }
 }

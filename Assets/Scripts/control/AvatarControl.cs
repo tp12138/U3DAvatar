@@ -89,10 +89,11 @@ public class AvatarControl : MonoBehaviour
     /// <param name="part">²¿Î»</param>
     /// <param name="num">±àºÅ</param>
     /// <returns></returns>
-    public bool removeMesh(GameObject go)
+    public void removeMesh(GameObject go)
     {
-        //return avatarModel.removeSkinnedMesh(go);
-        return false;
+        //avatarModel.removeSkinnedMesh(go);
+        string[] names=go.name.Split('-');
+        skinnedSourceDict[names[0]].Remove(names[1]);
     }
     
     

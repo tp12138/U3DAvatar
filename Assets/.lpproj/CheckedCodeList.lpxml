@@ -3130,7 +3130,7 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Resources/perf/memory.lua.txt" ModifyTime = "1658283318204"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Tutorial/LoadLuaScript/ByFile/Resources/byfile.lua.txt" ModifyTime = "1658283318218"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/ObjectTranslator.lua" ModifyTime = "1658283317493"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectDemoByMVC.lua.txt" ModifyTime = "1658916403999"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectDemoByMVC.lua.txt" ModifyTime = "1658971416184"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Resources/tdr/tdr.lua.txt" ModifyTime = "1658283318204"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/x-old/ScrollRectDemoByXLua.lua.txt" ModifyTime = "1658469244687"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/Utils.lua" ModifyTime = "1658283317496"/>
@@ -3138,5 +3138,5 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Resources/perf/profiler.lua.txt" ModifyTime = "1658283318204"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/LuaDLL/Lua.lua" ModifyTime = "1658283317492"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Src/Editor/Template/TemplateCommon.lua.txt" ModifyTime = "1658283318211"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1658910558642"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1658972039074"/>
 </CheckedCodeList>

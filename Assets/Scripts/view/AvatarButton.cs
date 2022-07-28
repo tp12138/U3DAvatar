@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using System;
 public class AvatarButton : MonoBehaviour, IPointerClickHandler
 {
     string[] names;
     public UnityEvent leftClick;
     public UnityEvent rightClick;
+    public Action<string, string> onButtonLeftClick;
+    public Action<GameObject> onButtonRightClick;
     /// <summary>
     /// 配置点击事件
     /// </summary>
@@ -29,14 +32,14 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     //左键点击事件,换装
     private void ButtonLeftClick()
     {
-        AvatarControl._instance.OnChangePeople(names[0], names[1]);
+        onButtonLeftClick(names[0], names[1]);
+      
        
     }
 
     //右键点击事件,删除装备
     private void ButtonRightClick()
     {
-        AvatarControl._instance.removeMesh(gameObject);
-        //Destroy(gameObject);
+        onButtonRightClick(transform.gameObject);
     }
 }
