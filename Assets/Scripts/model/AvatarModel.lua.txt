@@ -9,7 +9,48 @@
 
 ---@class AvatarModel
 local AvatarModel = {}
+AvatarModel.part={}
+AvatarModel.num={}
+AvatarModel.state=""
 
+function AvatarModel.configCharater(part,num)
+	local len=#part
+	for i = 1, len do
+		AvatarModel.part[i]=part[i]
+		AvatarModel.num[i]=num[i]
+		AvatarModel.configRolePart(part[i],num[i])
+	end
+end
+
+function AvatarModel.updateDate(part,num)
+	local len=#AvatarModel.part
+	for i = 1, len do
+		if AvatarModel.part[i]==part then
+			AvatarModel.UpdatePart(part,num)
+			return
+		end
+	end
+end
+function  AvatarModel.setState(state)
+	AvatarModel.state=state	
+end
+
+function AvatarModel.configRolePart(part,num)
+	AvatarModel.control:OnAddNewPart(part)
+end
+
+function AvatarModel.UpdatePart(part,num)
+	AvatarModel.control:onUpdatePart(AvatarModel.state,part,num)
+end
+
+function AvatarModel.setControl(control)
+	AvatarModel.control=control
+end
+
+
+return  AvatarModel
+
+--[[
 xlua.hotfix(CS.AvatarModel,"updateData",function (part,num)
 		local length=self.targetDatas:GetLength(0)
 		for i = 0, length-1,1 do
@@ -29,3 +70,4 @@ xlua.hotfix(CS.AvatarModel,"configRoleDate",function (self,index,part,num)
 		self.onAddNewPart(part)
 	return
 end)
+]]--

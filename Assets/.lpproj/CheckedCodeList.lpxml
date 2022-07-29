@@ -3123,7 +3123,7 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/TryArraySet.lua" ModifyTime = "1659060720809"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/TryArrayGet.lua" ModifyTime = "1659060720808"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/StaticLuaCallbacks.lua" ModifyTime = "1659060720785"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystemByMVC.lua.txt" ModifyTime = "1658989978192"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystemByMVC.lua.txt" ModifyTime = "1659062661332"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/UpdateCSObject.lua" ModifyTime = "1659060720808"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/TypeExtensions.lua" ModifyTime = "1659060720794"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/x-old/AvatarSystem.lua.txt" ModifyTime = "1658469244687"/>
@@ -3138,8 +3138,8 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Resources/perf/profiler.lua.txt" ModifyTime = "1658283318204"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/LuaDLL/Lua.lua" ModifyTime = "1659060720799"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Src/Editor/Template/TemplateCommon.lua.txt" ModifyTime = "1658283318211"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1659062155824"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua.txt" ModifyTime = "1659062557555"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Gen/Resources/hotfix_id_map.lua.txt" ModifyTime = "1659064158958"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua.txt" ModifyTime = "1659077450728"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua.txt" ModifyTime = "1659062541203"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/AvatarControl.lua" ModifyTime = "1659060720777"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/AvatarModel.lua" ModifyTime = "1659060720777"/>

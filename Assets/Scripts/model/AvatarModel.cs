@@ -18,9 +18,7 @@ public class AvatarModel : MonoBehaviour
     public TextAsset luaScript;
     [HideInInspector]
     internal static LuaEnv luaEnv = new LuaEnv();
-    [HideInInspector]
-    public Dictionary<string, Action<System.Object, System.Object>> nameToFun;
-
+  
     private string state;
     public void Awake()
     {
