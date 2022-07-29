@@ -313,7 +313,7 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			
                 AvatarModel gen_to_be_invoked = (AvatarModel)translator.FastGetCSObj(L, 1);
-                gen_to_be_invoked.onUpdatePart = translator.GetDelegate<System.Action<string, string>>(L, 2);
+                gen_to_be_invoked.onUpdatePart = translator.GetDelegate<System.Action<string, string, string>>(L, 2);
             
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);

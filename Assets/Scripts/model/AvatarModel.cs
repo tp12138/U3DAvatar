@@ -11,7 +11,7 @@ public class AvatarModel : MonoBehaviour
    
     [HideInInspector]
     public string[,] targetDatas = new string[6, 2];
-    public Action<string,string> onUpdatePart;
+    public Action<string,string,string> onUpdatePart;
     public Action<string> onAddNewPart;
     [HideInInspector]
     public LuaTable scriptEnv;
@@ -20,6 +20,8 @@ public class AvatarModel : MonoBehaviour
     internal static LuaEnv luaEnv = new LuaEnv();
     [HideInInspector]
     public Dictionary<string, Action<System.Object, System.Object>> nameToFun;
+
+    private string state;
     public void Awake()
     {
         scriptEnv = luaEnv.NewTable();

@@ -33,7 +33,7 @@ public class RoleUIViev : MonoBehaviour
     /// </summary>
     /// <param name="part">部位</param>
     /// <param name="num">部位中新蒙皮的编号</param>
-    private void changeMesh(string part, string num)
+    private void changeMesh(string state,string part, string num)
     {
          SkinnedMeshRenderer smrTemp = avatarControl.getSkinnedMeshByPartAndNum(part, num);
          if (smrTemp == null)
@@ -47,7 +47,7 @@ public class RoleUIViev : MonoBehaviour
          targetSkinned[part].bones = bones.ToArray();
          targetSkinned[part].sharedMesh = smrTemp.sharedMesh;
          targetSkinned[part].rootBone = smrTemp.rootBone;
-         switch (part)
+         switch (state)
          {
              case "pants":
                  PlayAnimation("item_pants");

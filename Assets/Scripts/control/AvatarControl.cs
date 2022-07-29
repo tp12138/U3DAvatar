@@ -18,7 +18,7 @@ public class AvatarControl : MonoBehaviour
     private AssetBundle prefabAB; //包含替换资源和UI贴图的AB包
     [HideInInspector]
     public Dictionary<string, Dictionary<string, SkinnedMeshRenderer>> skinnedSourceDict;//可替换资源的部位->编号->蒙皮字典
-    public Action<string, string> onRoleChange;
+    public Action<string,string, string> onRoleChange;
     public Action<GameObject> onInitNewRole;
     public Action<string> onAddNewPart;
     public TextAsset luaScript;//Lua文件资源
@@ -64,7 +64,7 @@ public class AvatarControl : MonoBehaviour
     {
         string[,] targetDatas = avatarModel.targetDatas;
         for (int i = 0; i < targetDatas.GetLength(0); i++)
-            OnChangePeople(targetDatas[i, 0], targetDatas[i, 1]);
+            OnChangePeople(targetDatas[i,0],targetDatas[i, 0], targetDatas[i, 1]);
     }
 
 
@@ -87,9 +87,9 @@ public class AvatarControl : MonoBehaviour
     /// </summary>
     /// <param name="part"></param>
     /// <param name="num"></param>
-    public void OnChangePeople(string part, string num)
+    public void OnChangePeople(string state,string part, string num)
     {
-        onRoleChange(part, num);
+        onRoleChange(state,part, num);
     }
     /// <summary>
     /// 从保存资源的字典中,移除某个部位某个编号的部件
