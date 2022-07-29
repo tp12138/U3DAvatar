@@ -1,6 +1,3 @@
----@module CS.XLua.CSObjectWrap
-CS.XLua.CSObjectWrap = {}
-
 ---@class CS.XLua.CSObjectWrap.AvatarSystemWrap : CS.System.Object
 CS.XLua.CSObjectWrap.AvatarSystemWrap = {}
 

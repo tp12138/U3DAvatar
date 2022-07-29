@@ -4,8 +4,7 @@ using UnityEngine;
 using XLua;
 public class RoleUIViev : MonoBehaviour
 {
-    [HideInInspector]
-    public AvatarModel avatarModel;
+
     [HideInInspector]
     public AvatarControl avatarControl;
     [HideInInspector]
@@ -21,10 +20,10 @@ public class RoleUIViev : MonoBehaviour
     void Awake()
     {
         targetSkinned = new Dictionary<string, SkinnedMeshRenderer>();
-        avatarModel = gameObject.GetComponent<AvatarModel>();
         avatarControl = gameObject.GetComponent<AvatarControl>();
-        avatarModel.onUpdatePart += changeMesh;
-        avatarModel.onAddNewPart += setNewPart;
+        avatarControl.onRoleChange += changeMesh;
+        avatarControl.onInitNewRole += initTargetBones;
+        avatarControl.onAddNewPart+= setNewPart;
         
     }
 
@@ -34,7 +33,7 @@ public class RoleUIViev : MonoBehaviour
     /// </summary>
     /// <param name="part">部位</param>
     /// <param name="num">部位中新蒙皮的编号</param>
-    public void changeMesh(string part, string num)
+    private void changeMesh(string part, string num)
     {
          SkinnedMeshRenderer smrTemp = avatarControl.getSkinnedMeshByPartAndNum(part, num);
          if (smrTemp == null)
@@ -48,13 +47,29 @@ public class RoleUIViev : MonoBehaviour
          targetSkinned[part].bones = bones.ToArray();
          targetSkinned[part].sharedMesh = smrTemp.sharedMesh;
          targetSkinned[part].rootBone = smrTemp.rootBone;
+         switch (part)
+         {
+             case "pants":
+                 PlayAnimation("item_pants");
+                 break;
+             case "shoes":
+                 PlayAnimation("item_boots");
+                 break;
+             case "top":
+                 PlayAnimation("item_shirt");
+                 break;
+             default:
+                 PlayAnimation("walk");
+                 break;
+         }
+       
     }
 
     /// <summary>
     /// 在骨架下生成部位
     /// </summary>
     /// <param name="partName">部位名字</param>
-    public void setNewPart(string partName)
+    private void setNewPart(string partName)
     {
         GameObject go = new GameObject();
         go.name = partName;
@@ -79,13 +94,25 @@ public class RoleUIViev : MonoBehaviour
     /// <summary>
     /// 获取目标骨架的骨骼信息,制作骨骼名字->骨骼的映射
     /// </summary>
-    public void initTargetBones()
+    private void initTargetBones(GameObject tObj)
     {
+        this.target = tObj;
         targetHipsDict = new Dictionary<string, Transform>();
         targetHips = target.GetComponentsInChildren<Transform>();
         //保存目标骨架身上从名字到骨骼的映射,直接查找
         foreach (var t in targetHips)
             targetHipsDict.Add(t.name, t);
+    }
+    private void PlayAnimation(string animName)
+    { //换装动画名称
+
+        Animation anim = GameObject.FindWithTag("Player").GetComponent<Animation>();
+        if (!anim.IsPlaying(animName))
+        {
+            anim.Play(animName);
+            anim.PlayQueued("idle1");
+        }
+
     }
 
 }

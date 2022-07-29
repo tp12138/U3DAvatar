@@ -2,36 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using XLua;
+[Hotfix]
 public class ScrollRectModel : MonoBehaviour
 {
     [HideInInspector]
     public List<string> datas = new List<string>();
-    
     [HideInInspector]
     public Dictionary<GameObject, int> datasAndIndex;
-    [HideInInspector]
-    public Action<int, GameObject> setRecordItem;
-    [HideInInspector]
-    public Action<GameObject> removeItem;
     [HideInInspector]
     public List<GameObject> needDispose;
     [HideInInspector]
     public GameObject item;
     [HideInInspector]
     public int itemWidth;
-
     [HideInInspector]
-    public Action<int, GameObject, ScrollRectModel> setNewItem;
+    public Action<int, GameObject,ScrollRectModel> setRecordItem;
+    [HideInInspector]
+    public Action<GameObject> removeItem;
+    [HideInInspector]
+    public LuaTable scriptEnv;
+    public TextAsset luaScript;
+    [HideInInspector]
+    internal static LuaEnv luaEnv = new LuaEnv();
     // Start is called before the first frame update
     void Awake()
     {
         datasAndIndex = new Dictionary<GameObject, int>();
         needDispose = new List<GameObject>();
+        scriptEnv = luaEnv.NewTable();
+        LuaTable meta = luaEnv.NewTable();
+        meta.Set("__index", luaEnv.Global);
+        scriptEnv.SetMetaTable(meta);
+        meta.Dispose();
+        scriptEnv.Set("self", this);
+        luaEnv.DoString(luaScript.text, "ScrollRectModel.Lua", scriptEnv);
     }
     /// <summary>
     /// 标识当前地板中的元素,并回收不该显示的元素
     /// </summary>
     /// <param name="indexNowRow"></param>
+   [Hotfix]
     public void removeUnUseItem(int startNum,int endNum)
     {
         foreach (var go in datasAndIndex.Keys)
@@ -45,49 +56,55 @@ public class ScrollRectModel : MonoBehaviour
             {
                 //超出范围,收回到对象池内
                 needDispose.Add(go);
+                
             }
         }
-        foreach (var go in needDispose)
-        {
-            datasAndIndex.Remove(go);
-            //隐藏
-            removeItem(go);
-        }
+       foreach(var t in needDispose)
+       {
+           deleteItem(t);
+       }
     }
 
     /// <summary>
     /// 刷新地板上的元素,重新生成新元素
     /// </summary>
     /// <param name="indexNowRow"></param>
+    [Hotfix]
     public void generaNewItem(int startNum, int endNum)
     {
-        for (int i = startNum; i <= endNum; i++)
+        for (int i = startNum; i <=endNum; i++)
         {
-            if (datasAndIndex.ContainsValue(i))
+            if (i < datas.Count)
             {
-                //此位置已经有item了 不做处理
-                continue;
-            }
-            else//此位置没有item 需要加载一个
-            {
-                if (i < datas.Count)
+                if (datasAndIndex.ContainsValue(i))
                 {
-                    //如果对象池中有空闲的实例
-                    if (needDispose.Count > 0)
-                    {
-                        //设置生成新item
-                        datasAndIndex[needDispose[0]] = i;
-                        //setRecordItem(i, needDispose[0]);
-                        setNewItem(i, needDispose[0], this);
-                        needDispose.Remove(needDispose[0]);
-                    }
+                    //此位置已经有item了 不做处理
+                    continue;
+                }
+                else//此位置没有item 需要加载一个
+                {
+                    addNewItem(i);
                 }
             }
+           
         }
     }
 
+    [Hotfix]
+    public void addNewItem(int index)
+    {
+        Debug.Log("is c#");
+    }
+
+    [Hotfix]
     public void deleteItem(GameObject go)
     {
-        removeItem(go);
+      
+    }
+
+    public void clearRecord()
+    {
+        datasAndIndex.Clear();
+        needDispose.Clear();
     }
 }

@@ -3,11 +3,10 @@ unity=CS.UnityEngine
 localData={}
 function init()
 	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
-	localData._needDispose={}
 	localData.scrollRect=scrollRect:GetComponent("ScrollRect")
 	localData.listContent=listContent
 	localData.datas=self.scrollModel.datas
-	loadAssets(6,3,80,1,"item")
+	loadAssets(3,3,80,1,"item")
 	setRecord()
 end
 
@@ -15,13 +14,13 @@ end
 function loadAssets(row1,col1,itemWidth1,chink1,prefabName)
 	localData.item=unity.Resources.Load(prefabName)
 	self.scrollModel.item=localData.item
+	
 	localData.row=row1
 	self.row=row1
 	localData.col=col1
 	self.col=col1
 	localData.chink=chink1
 	self.chink=chink1
-	--temp=localData.item:GetComponent("RectTransform").rect.size.x
 	localData.itemWidth=itemWidth1
 	self.scrollModel.itemWidth=itemWidth1
 	localData.cell=localData.chink+localData.itemWidth
@@ -34,35 +33,34 @@ end
 
 --config grid
 function setRecordAndGrid()
+	
 	while localData.isLoadingRecord do
 		coroutine.yield()
 	end
 	localData.isLoadingRecord=true
-	self.scrollModel.datas=avatarControl:getAllMeshNameOfPart(self.scrollView.partName)
-
-	--print(self.scrollModel.datas.Count)
+	self.scrollModel.datas=avatarControl:getAllMeshNameOfPart(self.partName)
+	
 	localData.datas=self.scrollModel.datas
 	local count=localData.datas.Count
+	
 	h=count/localData.col*localData.cell
 	if count%localData.col~=0 then
 		h=h+localData.cell
 	end
-	self.scrollView:setContent(localData.col*localData.cell,h)
+	
+	self.setContent(localData.col*localData.cell,h)
 	local rectTransform=localData.listContent:GetComponent("RectTransform")
-	--rectTransform.sizeDelta=unity.Vector2(localData.col*localData.cell,h)
-	--rectTransform.localPosition=unity.Vector3(0,0,0)
-	localData.isDragIng=true
+	rect=localData.listContent:GetComponent("RectTransform")
+	
 	local temCount
 	if count>=localData.row*localData.col then
 		temCount=localData.row*localData.col
 	else
 		temCount=count
 	end
-	--init some to display
+	local cur=1
 	for i = 0, temCount-1,1 do
-		local go=CS.UnityEngine.Object.Instantiate(localData.item,unity.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
-		go.transform:SetParent(rectTransform)
-		self.scrollView:setRecordItem(i,go)
+		self.scrollModel:addNewItem(i)
 	end
 	localData.isDragIng=false
 	self.isDragIng=false
@@ -70,20 +68,10 @@ function setRecordAndGrid()
 	self.isLoadingRecord=false
 end
 function setRecord()
-	--clear grid
-	clearRecord()
+	self.scrollModel:clearRecord()
 	local ots=coroutine.create(setRecordAndGrid)
 	coroutine.resume(ots)
 end
---clear grid and items
-function clearRecord()
-	if localData.datasAndIndex~=nil then
-		for k,v in pairs(localData.datasAndIndex) do
-			k:SetActive(false)
-			localData._needDispose[(#localData._needDispose)]=k
-		end
-	end
-	localData.datasAndIndex={}
-end
+
 
 init()

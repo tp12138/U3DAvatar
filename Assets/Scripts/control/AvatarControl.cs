@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using XLua;
+[Hotfix]
 public class AvatarControl : MonoBehaviour
 {
     [HideInInspector]
@@ -17,18 +18,23 @@ public class AvatarControl : MonoBehaviour
     private AssetBundle prefabAB; //包含替换资源和UI贴图的AB包
     [HideInInspector]
     public Dictionary<string, Dictionary<string, SkinnedMeshRenderer>> skinnedSourceDict;//可替换资源的部位->编号->蒙皮字典
-
+    public Action<string, string> onRoleChange;
+    public Action<GameObject> onInitNewRole;
+    public Action<string> onAddNewPart;
     public TextAsset luaScript;//Lua文件资源
     public void Awake()
     {
          _instance = this;
         DontDestroyOnLoad(this); //不删除游戏物体
         avatarModel = gameObject.GetComponent<AvatarModel>();
+        avatarModel.onUpdatePart += OnChangePeople;
+        avatarModel.onAddNewPart += OnAddNewPart;
         roleUIViev = gameObject.GetComponent<RoleUIViev>();
         skinnedSourceDict = new Dictionary<string, Dictionary<string, SkinnedMeshRenderer>>();
         LuaEnv luaEnv = new LuaEnv();
-        luaEnv.DoString(luaScript.text);
+        luaEnv.DoString(luaScript.text,"AvatarControl.Lua");
         initCharacter();
+        
     }
 
     /// <summary>
@@ -63,25 +69,27 @@ public class AvatarControl : MonoBehaviour
 
 
     //外部调用,更改目标服装
+    [Hotfix]
+    public void tryToChangePeople(string part, string num)
+    {
+
+    }
+    
+    [Hotfix]
+    public void OnAddNewPart(string part)
+    {
+        onAddNewPart(part);
+    }
+
+
+    /// <summary>
+    /// 数据处理完毕后的回调,通知view调整显示效果
+    /// </summary>
+    /// <param name="part"></param>
+    /// <param name="num"></param>
     public void OnChangePeople(string part, string num)
     {
-        avatarModel.updateData(part, num);
-        switch (part)
-        {
-            case "pants":
-                PlayAnimation("item_pants");
-                break;
-            case "shoes":
-                PlayAnimation("item_boots");
-                break;
-            case "top":
-                PlayAnimation("item_shirt");
-                break;
-            default:
-                PlayAnimation("walk");
-                break;
-        }
-       
+        onRoleChange(part, num);
     }
     /// <summary>
     /// 从保存资源的字典中,移除某个部位某个编号的部件
@@ -185,22 +193,14 @@ public class AvatarControl : MonoBehaviour
     public List<string> getAllMeshNameOfPart(string partName)
     {
         List<string> temp = new List<string>();
+      
         foreach (KeyValuePair<string, SkinnedMeshRenderer> t in skinnedSourceDict[partName])
         {
             temp.Add(t.Value.name);
         }
+       
         return temp;
     }
 
-    public void PlayAnimation(string animName)
-    { //换装动画名称
-
-        Animation anim = GameObject.FindWithTag("Player").GetComponent<Animation>();
-        if (!anim.IsPlaying(animName))
-        {
-            anim.Play(animName);
-            anim.PlayQueued("idle1");
-        }
-
-    }
+    
 }

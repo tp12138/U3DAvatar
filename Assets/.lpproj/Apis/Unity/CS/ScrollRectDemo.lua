@@ -41,11 +41,6 @@ CS.ScrollRectDemo.isLoadingRecord = nil
 function CS.ScrollRectDemo()
 end
 
----@param filename : CS.System.String
----@return CS.System.Byte[]
-function CS.ScrollRectDemo:LoadLuaScript(filename)
-end
-
 ---@param row : CS.System.Int32
 ---@param col : CS.System.Int32
 ---@param itemWidth1 : CS.System.Int32

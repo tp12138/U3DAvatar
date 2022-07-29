@@ -6,24 +6,27 @@ using System;
 using UnityEngine.UI;
 public class ScrollRectUIView : MonoBehaviour
 {
-    public GameObject listContent;
-    public GameObject scrollRect;
-    public string partName;
-    [HideInInspector]
-    public ScrollRectModel SRM;
+   // public GameObject listContent;
+   // public GameObject scrollRect;
+   // public string partName;
+   // [HideInInspector]
+   // public ScrollRectModel SRM;
     [HideInInspector]
     public ScrollRectControl SRC;
     
     void Awake()
     {
-        SRM = transform.gameObject.GetComponent<ScrollRectModel>();
+     
         SRC=transform.gameObject.GetComponent<ScrollRectControl>();
-        SRM.setRecordItem += setRecordItem;
-        SRM.removeItem += disableItem;
+        SRC.setNewItemInView += setRecordItem;
+        SRC.deletaItemInView += disableItem;
+        SRC.setContent += setContent;
+       
     }
     [LuaCallCSharp]
-    public void setRecordItem(int index,GameObject go)
+    public void setRecordItem(int index,GameObject go,ScrollRectModel SRM)
     {
+        go.transform.SetParent(SRC.listContent.GetComponent<Transform>());
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.pivot = new Vector2(0.5f, 1f);
         rt.anchoredPosition3D =SRC.getItemPosition(index);
@@ -36,15 +39,16 @@ public class ScrollRectUIView : MonoBehaviour
         ab.onButtonRightClick += SRM.deleteItem;
         Sprite sprit = AvatarControl._instance.loadSpriteFromAssetBundle(go.name);
         go.GetComponent<Image>().sprite = sprit;
-        go.GetComponent<Toggle>().group = scrollRect.GetComponent<ToggleGroup>();
+        go.GetComponent<Toggle>().group = SRC.scrollRect.GetComponent<ToggleGroup>();
+        
     }
 
     public void setContent(int width, int height)
     {
-        RectTransform rtf = listContent.GetComponent<RectTransform>();
+        RectTransform rtf = SRC.listContent.GetComponent<RectTransform>();
         rtf.sizeDelta = new Vector2(width, height);
         rtf.localPosition = Vector3.zero;
-    }
+   }
 
     public void disableItem(GameObject go)
     {

@@ -33,8 +33,6 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     private void ButtonLeftClick()
     {
         onButtonLeftClick(names[0], names[1]);
-      
-       
     }
 
     //右键点击事件,删除装备

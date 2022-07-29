@@ -2,7 +2,6 @@ unity=CS.UnityEngine
 function init()
 	initSource()	
 	loadSkinnedInfo()
-	--initCharacter(targetDatas)
 end
 function split(input, delimiter)
 	input = tostring(input)
@@ -22,8 +21,7 @@ function initSource()
 	avatarControl.ab=avatarControl:LoadAssetBundle("target.u3d")
 	local temp=avatarControl:loadSourcesFromAssetBundle("target")
 	target=avatarControl:TypeChange(unity.Object.Instantiate(temp))
-	avatarControl.roleUIViev.target=target
-	avatarControl.roleUIViev:initTargetBones()
+	avatarControl.onInitNewRole(target)
 	local dataPart={"eyes","hair","top","pants","shoes","face"}
 	local dataNum={"1","1","1","1","1","1"}
 	avatarModel:configCharater(dataPart,dataNum)
@@ -35,5 +33,8 @@ function loadSkinnedInfo()
 	avatarControl:save("prefabs.u3d");
 end
 
+xlua.hotfix(CS.AvatarControl,"tryToChangePeople",function (part,num)
+	avatarModel:updateData(part,num)
+end)
 
 init()
