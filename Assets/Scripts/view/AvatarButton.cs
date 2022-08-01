@@ -32,6 +32,7 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     //左键点击事件,换装
     private void ButtonLeftClick()
     {
+         //Debug.Log("按下左键了 :" + names[1]);
         onButtonLeftClick(names[0], names[0], names[1]);
     }
 

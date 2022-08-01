@@ -14,7 +14,6 @@ end
 function loadAssets(row1,col1,itemWidth1,chink1,prefabName)
 	localData.item=unity.Resources.Load(prefabName)
 	self.scrollModel.item=localData.item
-	
 	localData.row=row1
 	self.row=row1
 	localData.col=col1
@@ -38,11 +37,13 @@ function setRecordAndGrid()
 		coroutine.yield()
 	end
 	localData.isLoadingRecord=true
+	--print("in scroll control before get name")
+	--print(avatarControl)
 	self.scrollModel.datas=avatarControl:getAllMeshNameOfPart(self.partName)
-	
+	--print("in lua after get Name")
+	--print(self.scrollModel.length)
 	localData.datas=self.scrollModel.datas
 	local count=localData.datas.Count
-	
 	h=count/localData.col*localData.cell
 	if count%localData.col~=0 then
 		h=h+localData.cell

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using XLua;
 public class RoleUIViev : MonoBehaviour
 {
@@ -15,25 +16,47 @@ public class RoleUIViev : MonoBehaviour
     public Dictionary<string, SkinnedMeshRenderer> targetSkinned;//目标骨架上部位->蒙皮的信息的映射字典
     [HideInInspector]
     public Dictionary<string, Transform> targetHipsDict;//目标骨架身上 骨骼名字到骨骼的映射
-   
+    private LuaEnv luaEnv;
+    public TextAsset luaScript;
+    [CSharpCallLua]
+    delegate void RemoveMesh(GameObject go);
+    RemoveMesh a;
+    //delegate void removeMesh(GameObject go)
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         targetSkinned = new Dictionary<string, SkinnedMeshRenderer>();
         avatarControl = gameObject.GetComponent<AvatarControl>();
-        avatarControl.onRoleChange += changeMesh;
-        avatarControl.onInitNewRole += initTargetBones;
-        avatarControl.onAddNewPart+= setNewPart;
-        
+        luaEnv = new LuaEnv();
+        luaEnv.DoString(luaScript.text);
+        AvatarControl._instance.remove = luaEnv.Global.Get<Action<GameObject>>("OnremoveMesh");
+        AvatarControl._instance.tryChangePeople = luaEnv.Global.Get<Action<string, string>>("tryToChangePeople");
+      
     }
 
+    public void removeMesh(GameObject go)
+    {
+        a(go);
+    } 
 
+    public byte[] LoadLuaScript(ref string filename)
+    {
+
+        string path = Application.dataPath + "/Scripts/control/" + filename + ".lua.txt";
+        return System.Text.Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(path));
+    }
+
+    public void onInitNewRole(GameObject target)
+    {
+        this.target = target;// Instantiate(target);
+        initTargetBones(this.target);
+    }
     /// <summary>
     /// 修改场景中模型的对应部位的蒙皮网格渲染器的属性
     /// </summary>
     /// <param name="part">部位</param>
     /// <param name="num">部位中新蒙皮的编号</param>
-    private void changeMesh(string state,string part, string num)
+    public void changeMesh(string state,string part, string num)
     {
          SkinnedMeshRenderer smrTemp = avatarControl.getSkinnedMeshByPartAndNum(part, num);
          if (smrTemp == null)
@@ -62,15 +85,15 @@ public class RoleUIViev : MonoBehaviour
                  PlayAnimation("walk");
                  break;
          }
-       
     }
 
     /// <summary>
     /// 在骨架下生成部位
     /// </summary>
     /// <param name="partName">部位名字</param>
-    private void setNewPart(string partName)
+    public void setNewPart(string partName)
     {
+        //Debug.Log("set a new part :" + partName);
         GameObject go = new GameObject();
         go.name = partName;
         go.transform.parent =target.GetComponent<Transform>();
@@ -114,5 +137,6 @@ public class RoleUIViev : MonoBehaviour
         }
 
     }
+
 
 }

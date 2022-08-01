@@ -93,7 +93,7 @@ public class ScrollRectModel : MonoBehaviour
     [Hotfix]
     public void addNewItem(int index)
     {
-        Debug.Log("is c#");
+        //Debug.Log("is c#");
     }
 
     [Hotfix]
@@ -104,7 +104,11 @@ public class ScrollRectModel : MonoBehaviour
 
     public void clearRecord()
     {
+        if (datasAndIndex == null)
+            datasAndIndex = new Dictionary<GameObject, int>();
         datasAndIndex.Clear();
+        if (needDispose == null)
+            needDispose = new List<GameObject>();
         needDispose.Clear();
     }
 }

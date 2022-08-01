@@ -465,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &157914124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1559,6 +1559,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &758823244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,6 +1754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &823622021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2015,6 +2023,7 @@ MonoBehaviour:
   avatarControl: {fileID: 0}
   target: {fileID: 0}
   targetHips: []
+  luaScript: {fileID: 4900000, guid: 88f3e8f8ee69f944db29aa367f313bd0, type: 3}
 --- !u!4 &936806551
 Transform:
   m_ObjectHideFlags: 0
@@ -2041,7 +2050,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e82f18cccf4a446b353314088ee8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  luaScript: {fileID: 4900000, guid: 82e333fc35eb60f49abce4e6e1fcef1f, type: 3}
 --- !u!114 &936806553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,10 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db10dca686df564b94e297d700a0364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatarModel: {fileID: 0}
-  roleUIViev: {fileID: 0}
   ab: {fileID: 0}
-  luaScript: {fileID: 4900000, guid: 88f3e8f8ee69f944db29aa367f313bd0, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &983506835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2552,6 +2561,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &1231732868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,6 +3122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &1765249768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3379,6 +3396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SRC: {fileID: 0}
+  avatarModel: {fileID: 0}
+  roleUIViev: {fileID: 0}
+  ab: {fileID: 0}
+  luaScript: {fileID: 0}
 --- !u!114 &1840122520
 MonoBehaviour:
   m_ObjectHideFlags: 0

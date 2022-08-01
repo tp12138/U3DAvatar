@@ -257,7 +257,10 @@ public static class ExampleConfig
     typeof(Dictionary<string, SkinnedMeshRenderer>),
     typeof(UnityEngine.AssetBundle),
     typeof(GameObject),
-    typeof(System.Action<int, UnityEngine.GameObject>)
+    typeof(System.Action<int, UnityEngine.GameObject>),
+    typeof(System.Action<string,string>),
+    typeof(System.Action<UnityEngine.GameObject>),
+
 };
     //黑名单
     [BlackList]

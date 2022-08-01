@@ -1,0 +1,79 @@
+AvatarSystem={}
+
+local unity=CS.UnityEngine
+
+function  AvatarSystem:setRoleUIView(RoleUIViev)
+	AvatarSystem.RoleUIView=RoleUIViev
+end
+function init()
+	package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
+	require("AvatarModel")
+	AvatarSystem.avatarModel=AvatarModel
+	AvatarSystem.avatarModel.setControl(AvatarSystem)
+	--AvatarSystem.avatarModel:setControl(AvatarSystem)
+	AvatarSystem.RoleUIView=unity.GameObject.Find("AvatarSystem"):GetComponent("RoleUIViev")
+	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
+	--AvatarSystem.
+	--print("in lua init");
+	initSource()	
+	loadSkinnedInfo()
+	AvatarSystem.dataPart={"eyes","hair","top","pants","shoes","face"}
+	AvatarSystem.dataNum={"1","1","1","1","1","1"}
+	AvatarSystem.avatarModel:initCharacter()
+end
+
+function initSource()
+	--print("in lua initsource");
+	--avatarModel=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarModel")
+	avatarControl.ab=avatarControl:LoadAssetBundle("target.u3d")
+	local temp=avatarControl:loadSourcesFromAssetBundle("target")
+	target=avatarControl:TypeChange(unity.Object.Instantiate(temp))
+	AvatarSystem.RoleUIView:onInitNewRole(target)
+end
+
+function loadSkinnedInfo()
+	avatarControl:saveSources("prefabs.u3d");
+end
+
+function OnremoveMesh(go)
+	names=AvatarSystem:split(go.name)
+	numToSkinned=avatarControl.skinnedSourceDict:get_Item(names[1])
+	numToSkinned:Remove(names[2])
+	--avatarControl:removeMesh(go)
+end
+
+function tryToChangePeople(part,num)
+	--print("lua :ChangeMesh")
+	AvatarSystem.avatarModel.setState(part)
+	AvatarSystem.avatarModel.updateData(part,num)
+
+end
+
+function AvatarSystem.AddNewPart(part)
+	--for i, v in ipairs(part) do
+		--print(part)
+		AvatarSystem.RoleUIView:setNewPart(part)
+	--end
+end
+function  AvatarSystem.onUpdatePart(state,part,num)
+	--print("in lua is "..part)
+	AvatarSystem.RoleUIView:changeMesh(state,part,num)
+end
+
+--xlua.hotfix(CS.AvatarControl,"tryToChangePeople",function (part,num)
+--	avatarModel:updateData(part,num)
+--end)
+function AvatarSystem:split(input, delimiter)
+	input = tostring(input)
+	delimiter = tostring(delimiter)
+	if (delimiter == "") then return false end
+	local pos, arr = 0, {}
+	for st, sp in function() return string.find(input, delimiter, pos, true) end do
+		table.insert(arr, string.sub(input, pos, st - 1))
+		pos = sp + 1
+	end
+	table.insert(arr, string.sub(input, pos))
+	return arr
+end
+--return AvatarSystem
+init()

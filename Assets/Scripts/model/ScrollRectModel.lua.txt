@@ -8,9 +8,25 @@
 -- To disable this template, check off menuitem: Options-Enable Template File
 
 ---@class ScrollRectModel
-local ScrollRectModel = {}
+ScrollRectModel = {}
 ScrollRectModel.datasAndIndex={}
 ScrollRectModel.needDispose={}
+ScrollRectModel.datas={}
+
+function ScrollRectModel.removeUnUseItem(startNum,endNum)
+	for i, v in ipairs(ScrollRectModel.datasAndIndex) do
+		if ScrollRectModel.datasAndIndex[i]>=startNum and ScrollRectModel.datasAndIndex<=endNum then
+			--
+		else
+			ScrollRectModel.needDispose[#ScrollRectModel.needDispose]=ScrollRectModel.datasAndIndex[i]
+		end
+	end
+	
+	for i, v in ipairs(ScrollRectModel.needDispose) do
+		ScrollRectModel.ScrollRectControl.removeItem(ScrollRectModel.needDispose[i])
+	end
+end
+
 xlua.hotfix(CS.ScrollRectModel,"addNewItem",function (self,index)
 		if index<self.datas.Count and index>=0 then
 			if self.needDispose.Count>0 then
@@ -19,7 +35,6 @@ xlua.hotfix(CS.ScrollRectModel,"addNewItem",function (self,index)
 				self.setRecordItem(index,temp,self)
 				self.needDispose:Remove(temp)
 			else
-				
 				local go=CS.UnityEngine.Object.Instantiate(self.item,CS.UnityEngine.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
 				self.datasAndIndex:Add(go,index)
 				self.setRecordItem(index,go,self)

@@ -37,20 +37,7 @@ public class ScrollRectControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //scrollView = this.gameObject.GetComponent<ScrollRectUIView>();
-        scrollModel =this.gameObject.GetComponent<ScrollRectModel>();
-        scrollModel.setRecordItem += setNewItem;
-        scrollModel.removeItem += deleteItem;
-        scriptEnv = luaEnv.NewTable();
-        LuaTable meta = luaEnv.NewTable();
-        meta.Set("__index", luaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-        scriptEnv.Set("self", this);
-        scriptEnv.Set("listContent", listContent);
-        scriptEnv.Set("scrollRect", scrollRect);
-        luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);
-        scrollRect.GetComponent<ScrollRect>().onValueChanged.AddListener((value) => { onRecordDrag(value.y); });
+       
     }
     void OnEnable()
     {
@@ -61,6 +48,23 @@ public class ScrollRectControl : MonoBehaviour
             for (int i = 1; i < temp.Length; i++)
                 Destroy(temp[i].gameObject);
             luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
+        }
+        else
+        {
+            //scrollView = this.gameObject.GetComponent<ScrollRectUIView>();
+            scrollModel = this.gameObject.GetComponent<ScrollRectModel>();
+            scrollModel.setRecordItem += setNewItem;
+            scrollModel.removeItem += deleteItem;
+            scriptEnv = luaEnv.NewTable();
+            LuaTable meta = luaEnv.NewTable();
+            meta.Set("__index", luaEnv.Global);
+            scriptEnv.SetMetaTable(meta);
+            meta.Dispose();
+            scriptEnv.Set("self", this);
+            scriptEnv.Set("listContent", listContent);
+            scriptEnv.Set("scrollRect", scrollRect);
+            luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);
+            scrollRect.GetComponent<ScrollRect>().onValueChanged.AddListener((value) => { onRecordDrag(value.y); });
         }
     }
     public void onRecordDrag(float y)
