@@ -1,7 +1,6 @@
 AvatarSystem={}
 
 local unity=CS.UnityEngine
-
 function  AvatarSystem:setRoleUIView(RoleUIViev)
 	AvatarSystem.RoleUIView=RoleUIViev
 end

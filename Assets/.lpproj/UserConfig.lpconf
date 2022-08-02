@@ -2,9 +2,9 @@
 <BreakpointList/>
 <WatchList/>
 <ProjectUI>
-  <TreeState BaseX = "0" BaseY = "0" AlternativeItem = "LuaFolders#Assets#Scripts#model">
+  <TreeState BaseX = "0" BaseY = "0" AlternativeItem = "LuaFolders#Assets#Scripts#control#ScrollRectControl.lua.txt">
     <SelectedList>
-      <Selected Path = "LuaFolders#Assets#Scripts#control#ScrollRectDemoByMVC.lua.txt"/>
+      <Selected Path = "LuaFolders#Assets#Scripts#control#AvatarSystem.lua.txt"/>
     </SelectedList>
     <ExpandedList>
       <Expanded Path = "LuaFolders"/>
@@ -16,68 +16,50 @@
   </TreeState>
 </ProjectUI>
 <FindAnReplaceUI
-  Pattern = "print"
+  Pattern = "addToDatasAndIndex"
   MatchCase = "false"
   MatchWholeWord = "false"
   UseRegEx = "false"
   Target = ""
   Replace = ""/>
 <MainWindow
-  X = "0"
-  Y = "0"
-  Width = "960"
-  Height = "1040"
+  X = "507"
+  Y = "45"
+  Width = "1307"
+  Height = "955"
   Maximized = "false"
-  LastCodeFilename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua.txt">
+  LastCodeFilename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua">
   <DockingControl>
     <DockingNode DockingDirection = "Horizontal">
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "724" Height = "923" DocumentStyle = "true">
+        <DockingBlock Width = "1295" Height = "838" DocumentStyle = "true">
+          <DockingCard
+            Text = "ScrollRectModel.lua"
+            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua"
+            ActivePage = "true"
+            ActivateTime = "2539337113"
+            CaretLineIndex = "39"
+            CaretCodeCharIndex = "4"
+            BaseX = "0"
+            BaseY = "-90"/>
+          <DockingCard
+            Text = "ScrollRectControl.lua.txt"
+            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectControl.lua.txt"
+            ActivePage = "false"
+            ActivateTime = "2539161945"
+            CaretLineIndex = "134"
+            CaretCodeCharIndex = "45"
+            BaseX = "0"
+            BaseY = "-1440"/>
           <DockingCard
             Text = "AvatarSystem.lua.txt"
             Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystem.lua.txt"
             ActivePage = "false"
-            ActivateTime = "2451230250"
-            CaretLineIndex = "45"
+            ActivateTime = "2538515762"
+            CaretLineIndex = "21"
             CaretCodeCharIndex = "3"
             BaseX = "0"
             BaseY = "-315"/>
-          <DockingCard
-            Text = "AvatarModel.lua"
-            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua"
-            ActivePage = "false"
-            ActivateTime = "2451831204"
-            CaretLineIndex = "56"
-            CaretCodeCharIndex = "8"
-            BaseX = "0"
-            BaseY = "0"/>
-          <DockingCard
-            Text = "ScrollRectDemoByMVC.lua.txt"
-            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectDemoByMVC.lua.txt"
-            ActivePage = "false"
-            ActivateTime = "2451235450"
-            CaretLineIndex = "43"
-            CaretCodeCharIndex = "3"
-            BaseX = "0"
-            BaseY = "-45"/>
-          <DockingCard
-            Text = "ScrollRectModel.lua.txt"
-            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua.txt"
-            ActivePage = "true"
-            ActivateTime = "2452300554"
-            CaretLineIndex = "14"
-            CaretCodeCharIndex = "0"
-            BaseX = "0"
-            BaseY = "-90"/>
-        </DockingBlock>
-      </DockingNode>
-      <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "217" Height = "923" DocumentStyle = "false">
-          <DockingCard
-            Text = "Project"
-            Tag = ""
-            ActivePage = "true"
-            ActivateTime = "0"/>
         </DockingBlock>
       </DockingNode>
     </DockingNode>

@@ -6,55 +6,61 @@ using System;
 using UnityEngine.UI;
 public class ScrollRectUIView : MonoBehaviour
 {
-   // public GameObject listContent;
-   // public GameObject scrollRect;
-   // public string partName;
+      public GameObject listContent;
+      public GameObject scrollRect;
+      public string partName;
    // [HideInInspector]
    // public ScrollRectModel SRM;
     [HideInInspector]
     public ScrollRectControl SRC;
+  /*  [HideInInspector]
+    public LuaTable scriptEnv;
+    public TextAsset luaScript;
     [HideInInspector]
-    public AvatarModel avatarModel;
-    [HideInInspector]
-    public RoleUIViev roleUIViev;
-    [HideInInspector]
-    public static AvatarControl _instance;
-    [HideInInspector]
-    public AssetBundle ab;    //包含骨架的AB包
-    [HideInInspector]
-    private AssetBundle prefabAB; //包含替换资源和UI贴图的AB包
-    [HideInInspector]
-    public Dictionary<string, Dictionary<string, SkinnedMeshRenderer>> skinnedSourceDict;//可替换资源的部位->编号->蒙皮字典
-    public Action<string, string, string> onRoleChange;
-    public Action<GameObject> onInitNewRole;
-    public Action<string> onAddNewPart;
-    public TextAsset luaScript;//Lua文件资源
+    internal static LuaEnv luaEnv = new LuaEnv();*/
     void Awake()
     {
      
         SRC=transform.gameObject.GetComponent<ScrollRectControl>();
-        SRC.setNewItemInView += setRecordItem;
-        SRC.deletaItemInView += disableItem;
-        SRC.setContent += setContent;
-       
+      //  SRC.setNewItemInView += setRecordItem;
+       // SRC.deletaItemInView += disableItem;
+       // SRC.setContent += setContent;
+
+      /*  scriptEnv = luaEnv.NewTable();
+        LuaTable meta = luaEnv.NewTable();
+        meta.Set("__index", luaEnv.Global);
+        scriptEnv.SetMetaTable(meta);
+        meta.Dispose();
+        scriptEnv.Set("self", this);
+        scriptEnv.Set("listContent", listContent);
+        scriptEnv.Set("scrollRect", scrollRect);
+        luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);*/
+        scrollRect.GetComponent<ScrollRect>().onValueChanged.AddListener((value) => { onDrag(value.y); });
+    }
+
+
+    public void onDrag(float y)
+    {
+        float posY = listContent.GetComponent<RectTransform>().anchoredPosition3D.y;
+        SRC.onRecordDrag(posY);
     }
     [LuaCallCSharp]
-    public void setRecordItem(int index,GameObject go,ScrollRectModel SRM)
+    public void setRecordItem(int index,GameObject go,string itemName,Vector2 itemSize,Vector3 itemPos)
     {
-        go.transform.SetParent(SRC.listContent.GetComponent<Transform>());
+        go.transform.SetParent(listContent.GetComponent<Transform>());
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.pivot = new Vector2(0.5f, 1f);
-        rt.anchoredPosition3D =SRC.getItemPosition(index);
-        rt.sizeDelta = new Vector2(SRM.itemWidth * 2, SRM.itemWidth * 2);
+        rt.anchoredPosition3D = itemPos;
+        rt.sizeDelta = itemSize;
         go.SetActive(true);
-        go.name = SRM.datas[index];
+        go.name = itemName;
         AvatarButton ab = go.GetComponent<AvatarButton>();
         ab.onButtonLeftClick += chengeMesh;
         ab.onButtonRightClick += AvatarControl._instance.remove;
-        ab.onButtonRightClick += SRM.deleteItem;
+      //  ab.onButtonRightClick += SRM.deleteItem;
         Sprite sprit = AvatarControl._instance.loadSpriteFromAssetBundle(go.name);
         go.GetComponent<Image>().sprite = sprit;
-        go.GetComponent<Toggle>().group = SRC.scrollRect.GetComponent<ToggleGroup>();
+        go.GetComponent<Toggle>().group = scrollRect.GetComponent<ToggleGroup>();
         
     }
     public void chengeMesh(string state,string a ,string b){
@@ -63,14 +69,18 @@ public class ScrollRectUIView : MonoBehaviour
     }
     public void setContent(int width, int height)
     {
-        RectTransform rtf = SRC.listContent.GetComponent<RectTransform>();
+        RectTransform rtf = listContent.GetComponent<RectTransform>();
         rtf.sizeDelta = new Vector2(width, height);
         rtf.localPosition = Vector3.zero;
    }
-
+    [LuaCallCSharp]
     public void disableItem(GameObject go)
     {
+       // Debug.Log(go==null);
         go.SetActive(false);
     }
 
+  //  public GameObject getListContent() { return listContent == null ? null : listContent; }
+
+ //   public GameObject getScrollRect() { return this.scrollRect; }
 }

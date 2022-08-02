@@ -51,30 +51,14 @@ function CS.XLua.DelegateBridge:__Gen_Delegate_Imp7(p0)
 end
 
 ---@param p0 : CS.System.Object
----@param p1 : CS.System.Int32
----@param p2 : CS.System.Int32
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp8(p0, p1, p2)
-end
-
----@param p0 : CS.System.Object
----@param p1 : CS.System.Int32
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp9(p0, p1)
-end
-
----@param p0 : CS.System.Object
----@param p1 : CS.System.Object
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp10(p0, p1)
-end
-
----@param p0 : CS.System.Object
 ---@param p1 : CS.System.String
 ---@return CS.System.Byte[]
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp11(p0, p1)
+function CS.XLua.DelegateBridge:__Gen_Delegate_Imp8(p0, p1)
 end
 
 ---@param p0 : CS.System.Object
 ---@param p1 : CS.System.Single
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp12(p0, p1)
+function CS.XLua.DelegateBridge:__Gen_Delegate_Imp9(p0, p1)
 end
 
 ---@param p0 : CS.System.Object
@@ -82,14 +66,14 @@ end
 ---@param p2 : CS.System.Int32
 ---@param p3 : CS.System.Int32
 ---@return CS.System.Int32
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp13(p0, p1, p2, p3)
+function CS.XLua.DelegateBridge:__Gen_Delegate_Imp10(p0, p1, p2, p3)
 end
 
 ---@param p0 : CS.System.Object
 ---@param p1 : CS.System.Single
 ---@param p2 : CS.System.Int32
 ---@return CS.System.Int32
-function CS.XLua.DelegateBridge:__Gen_Delegate_Imp14(p0, p1, p2)
+function CS.XLua.DelegateBridge:__Gen_Delegate_Imp11(p0, p1, p2)
 end
 
 ---@param type : CS.System.Type

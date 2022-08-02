@@ -21,15 +21,7 @@ public class AvatarControl : MonoBehaviour
     public Action<string, string> tryChangePeople;
     public void Awake()
     {
-        if(_instance==null)
-             _instance = this;
-        DontDestroyOnLoad(this); //不删除游戏物体
-        skinnedSourceDict = new Dictionary<string, Dictionary<string, SkinnedMeshRenderer>>();
-       
-       // LuaEnv luaEnv = new LuaEnv();
-      //  luaEnv.DoString(luaScript.text,"AvatarControl.Lua");
-       // initCharacter();
-        
+
     }
 
     /// <summary>
@@ -56,11 +48,8 @@ public class AvatarControl : MonoBehaviour
             }
             skinnedSourceDict[names[0]].Add(names[1], t);
         }
-       Debug.Log("save over");
     }
   
-    
-    
     /// <summary>
     /// 获取对应部位编号为num的蒙皮网格资源
     /// </summary>
@@ -69,7 +58,6 @@ public class AvatarControl : MonoBehaviour
     /// <returns></returns>
     public SkinnedMeshRenderer getSkinnedMeshByPartAndNum(string part, string num)
     {
-        //Debug.Log("add new part name is :" + part);
         if (skinnedSourceDict.ContainsKey(part) == false)
         {
             Debug.LogError("part name error " + part);
@@ -86,7 +74,6 @@ public class AvatarControl : MonoBehaviour
         return skinnedSourceDict[part][num];
     }
 
-   
     //转Object类型为GameObject类型
     public GameObject TypeChange(UnityEngine.Object go) { return (GameObject)go; }
 
@@ -94,17 +81,8 @@ public class AvatarControl : MonoBehaviour
     public List<string> getAllMeshNameOfPart(string partName)
     {
         List<string> temp = new List<string>();
-       // Debug.Log(skinnedSourceDict == null);
-       // Debug.Log(skinnedSourceDict.ContainsKey(partName));
-       // Debug.Log(skinnedSourceDict.Count);
-       // foreach (KeyValuePair<string, Dictionary<string, SkinnedMeshRenderer>> tt in skinnedSourceDict)
-      //      Debug.Log(tt.Key);
         foreach (KeyValuePair<string, SkinnedMeshRenderer> t in skinnedSourceDict[partName])
-        {
-           // Debug.Log(t.Value.name);
             temp.Add(t.Value.name);
-        }
-       // Debug.Log("in C# be getAllMeshName");
         return temp;
     }
 

@@ -23,10 +23,6 @@ CS.RoleUIViev.luaScript = nil
 function CS.RoleUIViev()
 end
 
----@param go : CS.UnityEngine.GameObject
-function CS.RoleUIViev:removeMesh(go)
-end
-
 ---@param filename : CS.System.String
 ---@return CS.System.Byte[]
 function CS.RoleUIViev:LoadLuaScript(filename)
