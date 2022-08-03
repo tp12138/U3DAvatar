@@ -54,9 +54,7 @@ function configRolePart(part)
 end
 
 function UpdatePart(part,num)
-	--print("in lua AvatarModel part is "..part)
 	AvatarModel.control.onUpdatePart(AvatarModel.state,part,num)
 end
-
 
 return  AvatarModel

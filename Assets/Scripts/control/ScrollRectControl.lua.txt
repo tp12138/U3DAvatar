@@ -4,37 +4,30 @@ ScrollRectControl={}
 ScrollRectControl.needDispose={}
 function init()
 	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
-	--ScrollRectControl.scrollRect=scrollRect:GetComponent("ScrollRect")
-	--ScrollRectControl.listContent=listContent
 	package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
 	require("ScrollRectModel")
 	ScrollRectControl.ScrollModel=ScrollRectModel
 	ScrollRectControl.ScrollModel.setScrollControl(ScrollRectControl)
 	ScrollRectControl.scrollRectView=self.gameObject:GetComponent("ScrollRectUIView")
-	ScrollRectControl.loadAssets(1,3,80,0,"item")
+	ScrollRectControl.loadAssets(3,3,80,0,"item")
 	ScrollRectControl.setRecord()
 end
 
 --config the moduel
 function ScrollRectControl.loadAssets(row1,col1,itemWidth1,chink1,prefabName)
 	ScrollRectControl.item=unity.Resources.Load(prefabName)
-	--self.scrollModel.item=ScrollRectControl.item
 	ScrollRectControl.row=row1
 	self.row=row1
 	ScrollRectControl.col=col1
 	self.col=col1
 	ScrollRectControl.chink=chink1
-	--self.chink=chink1
 	ScrollRectControl.itemWidth=itemWidth1
-	--self.scrollModel.itemWidth=itemWidth1
 	self.itemSize=ScrollRectControl.getItemSize()
 	ScrollRectControl.cell=ScrollRectControl.chink+ScrollRectControl.itemWidth
 	self.cell=ScrollRectControl.cell
-	--ScrollRectControl.isDragIng=false
 	self.isDragIng=false
 	ScrollRectControl.isLoadingRecord=false
-	
-	--self.isLoadingRecord=false
+	ScrollRectControl.datasAndIndex=self.datasAndIndex
 end
 
 --config grid
@@ -45,9 +38,10 @@ function setRecordAndGrid()
 	ScrollRectControl.isLoadingRecord=true
 	local dat=avatarControl:getAllMeshNameOfPart(ScrollRectControl.scrollRectView.partName)
 	local ddd={}
-	for i = 0,dat.Count-1,1 do
-		ddd[i]=dat[i]
+	for i =0,dat.Count-1,1 do
+		ddd[i+1]=dat[i]
 	end
+	
 	ScrollRectControl.ScrollModel.setDatas(ddd)
 	local count=ScrollRectControl.ScrollModel.getDatasLength()
 	self.dataCount=count
@@ -55,10 +49,7 @@ function setRecordAndGrid()
 	if count%ScrollRectControl.col~=0 then
 		h=h+ScrollRectControl.cell
 	end
-	
 	ScrollRectControl.scrollRectView:setContent(ScrollRectControl.col*ScrollRectControl.cell,h)
-	--local rectTransform=ScrollRectControl.listContent:GetComponent("RectTransform")
-	--rect=ScrollRectControl.listContent:GetComponent("RectTransform")
 	
 	local temCount
 	if count>=ScrollRectControl.row*ScrollRectControl.col then
@@ -66,49 +57,41 @@ function setRecordAndGrid()
 	else
 		temCount=count
 	end
-	
 	for i = 0, temCount-1,1 do
-		ScrollRectControl.ScrollModel.initItemRecord(i)
+		ScrollRectControl.GnenerNewItem(i)
 	end
-	
 	ScrollRectControl.isLoadingRecord=false
 	
 end
 function ScrollRectControl.setRecord()
-	ScrollRectControl.ScrollModel.clearRecord()
+	ScrollRectControl.ScrollModel.clearDatas()
 	ScrollRectControl.needDispose={}
 	local ots=coroutine.create(setRecordAndGrid)
 	coroutine.resume(ots)
 end
 
-function updateList(posY)
-	local indexNowRow=getIndex(posY)
-	local startNum=indexNowRow*ScrollRectControl.col
-	local endNum=startNum+ScrollRectControl.row*ScrollRectControl.col
-	ScrollRectControl.ScrollModel.removeUnUseItem(startNum,endNum)
-	ScrollRectControl.ScrollModel.generaNewItem(startNum,endNum)
-end
+
 
 function ScrollRectControl.getItemSize()
 	local size=CS.UnityEngine.Vector2(ScrollRectControl.itemWidth*2,ScrollRectControl.itemWidth*2)
 	return size
 end
 
-function  ScrollRectControl.GnenerNewItem(index,itemName)
+function  ScrollRectControl.GnenerNewItem(index)
 	local go=CS.UnityEngine.Object.Instantiate(ScrollRectControl.item,CS.UnityEngine.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
-	print("By new")
-	ScrollRectControl.ScrollModel.addToDatasAndIndex(index,go)
+	ScrollRectControl.datasAndIndex:Add(go,index)
+	local itemName=ScrollRectControl.ScrollModel.getDataByIndex(index)
 	local size=ScrollRectControl.getItemSize()
 	local pos=ScrollRectControl.getItemPosition(index)
 	ScrollRectControl.scrollRectView:setRecordItem(index,go,itemName,size,pos)
 end
-function ScrollRectControl.SetNewItem(index,itemName)
-	local go=ScrollRectControl.getNewItem()
+function SetNewItem(index)
+	local go=ScrollRectControl.getItemFromNeedDispose()
 	if go~=nil then
-		--print("set a new item and needDisp length is ")
-		--print(#ScrollRectControl.needDispose)
-		print("by DisposeSentinel")
-		ScrollRectControl.ScrollModel.addToDatasAndIndex(index,go)
+		ScrollRectControl.datasAndIndex:Add(go,index)
+		local itemName=ScrollRectControl.ScrollModel.getDataByIndex(index)
+		if(itemName==nil) then
+		end
 		local size=ScrollRectControl.getItemSize()
 		local pos=ScrollRectControl.getItemPosition(index)
 		ScrollRectControl.scrollRectView:setRecordItem(index,go,itemName,size,pos)
@@ -116,25 +99,18 @@ function ScrollRectControl.SetNewItem(index,itemName)
 	
 end
 
-function ScrollRectControl.getNewItem()
+function ScrollRectControl.getItemFromNeedDispose()
 	local gos
 	if #ScrollRectControl.needDispose>0 then
 		gos=ScrollRectControl.needDispose[1]
-		table.remove(ScrollRectControl.needDispose)
-		--print("use needdispose")
-	--else
-	--	gos=CS.UnityEngine.Object.Instantiate(ScrollRectControl.item,CS.UnityEngine.Vector3(0,0,0),CS.UnityEngine.Quaternion.identity)
-	--	print("use init a new")
+		table.remove(ScrollRectControl.needDispose,1)
 	end
 	return  gos
 end
-function ScrollRectControl.RemoveItem(go)
-	--print(go.name)
+function RecycleItem(go)
 	table.insert(ScrollRectControl.needDispose,go)
-	--ScrollRectControl.needDispose[#ScrollRectControl.needDispose]=go
 	ScrollRectControl.scrollRectView:disableItem(go)
-	--print("needDispose length")
-	--print(#ScrollRectControl.needDispose)
+
 end
 
 function ScrollRectControl.getItemPosition(index)
@@ -150,13 +126,19 @@ function getPos_Y(index)
 	return sizeY
 end
 
-function getIndex(posY)
-	local index=0
-	index=posY//(ScrollRectControl.cell-10)
-	if posY<0 then
-		index=0
+function deleteItem(go)
+	local res=ScrollRectControl.ScrollModel.DeleteDate(go.name)
+	if res then
+		ScrollRectControl.datasAndIndex:Remove(go)
+		RecycleItem(go)
 	end
-	return index
 end
 
+function  onDestroy()
+	ScrollRectControl.ScrollModel.clearDatas();
+	for k, v in pairs(ScrollRectControl.needDispose) do
+		ScrollRectControl.scrollRectView:destroyItem(v)
+	end
+	ScrollRectControl.needDispose={}
+end
 init()

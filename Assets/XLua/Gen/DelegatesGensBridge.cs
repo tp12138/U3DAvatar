@@ -173,7 +173,29 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp7(object p0)
+		public void __Gen_Delegate_Imp7(int p0)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                
+                LuaAPI.xlua_pushinteger(L, p0);
+                
+                PCall(L, 1, 0, errFunc);
+                
+                
+                
+                LuaAPI.lua_settop(L, errFunc - 1);
+                
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public void __Gen_Delegate_Imp8(object p0)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -195,7 +217,7 @@ namespace XLua
 #endif
 		}
         
-		public byte[] __Gen_Delegate_Imp8(object p0, ref string p1)
+		public byte[] __Gen_Delegate_Imp9(object p0, ref string p1)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -219,7 +241,7 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp9(object p0, float p1)
+		public void __Gen_Delegate_Imp10(object p0, float p1)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -242,7 +264,7 @@ namespace XLua
 #endif
 		}
         
-		public int __Gen_Delegate_Imp10(object p0, int p1, int p2, int p3)
+		public int __Gen_Delegate_Imp11(object p0, int p1, int p2, int p3)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -267,7 +289,7 @@ namespace XLua
 #endif
 		}
         
-		public int __Gen_Delegate_Imp11(object p0, float p1, int p2)
+		public int __Gen_Delegate_Imp12(object p0, float p1, int p2)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -333,6 +355,11 @@ namespace XLua
 		    if (type == typeof(System.Action<UnityEngine.GameObject>))
 			{
 			    return new System.Action<UnityEngine.GameObject>(__Gen_Delegate_Imp6);
+			}
+		
+		    if (type == typeof(System.Action<int>))
+			{
+			    return new System.Action<int>(__Gen_Delegate_Imp7);
 			}
 		
 		    return null;

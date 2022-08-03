@@ -29,7 +29,6 @@ public class RoleUIViev : MonoBehaviour
         avatarControl = gameObject.GetComponent<AvatarControl>();
         luaEnv = new LuaEnv();
         luaEnv.DoString(luaScript.text);
-        //Debug.Log(luaEnv.Global.Get<int>("qwer"));
         AvatarControl._instance.remove = luaEnv.Global.Get<Action<GameObject>>("OnremoveMesh");
         AvatarControl._instance.tryChangePeople = luaEnv.Global.Get<Action<string, string>>("tryToChangePeople");
       

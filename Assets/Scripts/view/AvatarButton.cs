@@ -39,6 +39,7 @@ public class AvatarButton : MonoBehaviour, IPointerClickHandler
     //右键点击事件,删除装备
     private void ButtonRightClick()
     {
+        Debug.Log("be delete click");
         onButtonRightClick(transform.gameObject);
     }
 }

@@ -6,133 +6,134 @@ using System;
 using UnityEngine.UI;
 public class ScrollRectControl : MonoBehaviour
 {
-  //[HideInInspector]
-  // public ScrollRectModel scrollModel;
-  //  private ScrollRectUIView scrollView;
    [HideInInspector]
    public int col;
    [HideInInspector]
    public int row;
    [HideInInspector]
    public int cell;
-  /* [HideInInspector]
-   public int chink;*/
-    [HideInInspector]
-    public bool isDragIng;
-    //[HideInInspector]
-  //  public bool isLoadingRecord;
-    [HideInInspector]
-    public int dataCount;
-    [HideInInspector]
-    public Vector2 itemSize;
-   // private GameObject listContent;
+   [HideInInspector]
+   public bool isDragIng;
+   [HideInInspector]
+   public int dataCount;
+   [HideInInspector]
+   public Vector2 itemSize;
     [HideInInspector]
     public LuaTable scriptEnv;
     public TextAsset luaScript;
-   // public string partName;
     [HideInInspector]
     internal static LuaEnv luaEnv = new LuaEnv();
-   /* [HideInInspector]
-    public Action<int, GameObject,ScrollRectModel> setNewItemInView;
-    [HideInInspector]
-    public Action<int, int> setContent;
-    [HideInInspector]
-    public Action<GameObject> deletaItemInView;*/
-    //public GameObject scrollRect;
-    // Start is called before the first frame update
-    [CSharpCallLua]
-    private Action<float> onDrag;
+   
+    public Dictionary<GameObject, int> datasAndIndex;
+    public List<GameObject> needDispose;
+    public Action<GameObject> recycleItem;
+    public Action<int> setNewItem;
+    public Action<GameObject> tryToDeleteItem;
+    public LuaFunction onDestroy;
     void Start()
     {
-        //scrollView = this.gameObject.GetComponent<ScrollRectUIView>();
-        /*scrollModel = this.gameObject.GetComponent<ScrollRectModel>();
-        scrollModel.setRecordItem += setNewItem;
-        scrollModel.removeItem += deleteItem;*/
+        datasAndIndex = new Dictionary<GameObject, int>();
         scriptEnv = luaEnv.NewTable();
         LuaTable meta = luaEnv.NewTable();
         meta.Set("__index", luaEnv.Global);
         scriptEnv.SetMetaTable(meta);
         meta.Dispose();
         scriptEnv.Set("self", this);
-       // this.gameObject.GetComponent<ScrollRectUIView>
-        //scriptEnv.Set("listContent", listContent);
-       // scriptEnv.Set("scrollRect", scrollRect);
         luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);
-        //Debug.Log(scriptEnv.ContainsKey("xyz"));
-        onDrag = scriptEnv.Get<Action<float>>("updateList");
-        //scrollRect = gameObject.GetComponent<ScrollRect>();
+        recycleItem = scriptEnv.Get<Action<GameObject>>("RecycleItem");
+        setNewItem = scriptEnv.Get<Action<int>>("SetNewItem");
+        tryToDeleteItem = scriptEnv.Get<Action<GameObject>>("deleteItem");
+        onDestroy = scriptEnv.Get<LuaFunction>("onDestroy");
         this.isDragIng = false;
-        
     }
     void OnEnable()
     {
-
-       /* if (scriptEnv != null)
+        if (scriptEnv != null)
         {
-            
-            var temp = listContent.GetComponentsInChildren<Transform>();
+            var temp = transform.GetComponent<ScrollRectUIView>().listContent.GetComponentsInChildren<Transform>();
             for (int i = 1; i < temp.Length; i++)
                 Destroy(temp[i].gameObject);
-            luaEnv.DoString(luaScript.text, "LuaTestScript", scriptEnv);
+            luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);
         }
-        else
-        {
-           
-        }*/
+
     }
-    public void onRecordDrag(float posY)
+    public void onRecordDrag(float y)
     {
        
         if (dataCount <=col * row) return;
-       
+        float posY = transform.GetComponent<ScrollRectUIView>().listContent.GetComponent<RectTransform>().anchoredPosition3D.y;
         if (isDragIng) return;
-        
-       // float posY = listContent.GetComponent<RectTransform>().anchoredPosition3D.y;
         if (Math.Abs(posY) < cell / 2) return;
-
-        //Debug.Log("is drag");
-        isDragIng= true;
-        onDrag(posY);
-       /* int indexNowRow = getIndex(posY, cell);
+        isDragIng = true;
+        int indexNowRow = getIndex(posY);
         int startNum = indexNowRow * col;
         int endNum = (indexNowRow + row) * col;
-        scrollModel.removeUnUseItem(startNum,endNum);
-        scrollModel.generaNewItem(startNum, endNum);*/
+        List<GameObject> unUseItem = new List<GameObject>();
+        foreach (var go in datasAndIndex.Keys)
+        {
+            if (datasAndIndex[go] >= startNum && datasAndIndex[go] < endNum)
+                continue;//没超出范围,不回收
+            else
+                unUseItem.Add(go); //超出范围,收回到对象池内
+        }
+        
+        if (unUseItem.Count > 0)
+        {
+            //将超出范围的元素移除可见列表并隐藏
+            foreach (var go in unUseItem)
+            {
+                datasAndIndex.Remove(go);
+                recycleItem(go);
+            }
+            for (int i = startNum; i < endNum; i++)
+            {
+                if (datasAndIndex.ContainsValue(i))
+                {
+                    //此位置已经有item了 不做处理
+                    continue;
+                }
+                else//此位置没有item 需要加载一个
+                {
+                    if (i < dataCount && i>=0)
+                    {
+                        //如果对象池中有空闲的实例
+                        setNewItem(i);
+                    }
+                }
+            }
+        }
+        
         isDragIng = false;
     }
 
-   /* private void setNewItem(int index, GameObject go,ScrollRectModel srm)
-    {
-        setNewItemInView(index,go,srm);
-    }
-
-    public int getIndex(float y, int cell)
+    public int getIndex(float y)
     {
         int index = 0;
         index = (int)(y / cell);
         if (y < 0) index = 0;
         return index;
-    
-     }*/
-  /*  public int getPos_Y(int index, int col, int cell)
+     }
+ 
+
+    public void deleteItem(GameObject go)
     {
-        int sizeY = index / col * cell;
-        return -sizeY;
+        tryToDeleteItem(go);
     }
 
-    public Vector3 getItemPosition(int index)
+    void onDisable()
     {
-        int x = (int)(index % col * cell + 0.5 * cell);
-        int y = getPos_Y(index, col, cell);
-        Vector3 vt3 = new Vector3(x, y, 0);
-        return vt3;
-    }*/
-
-    private void deleteItem(GameObject go)
-    {
-       
-     //   scrollModel.datasAndIndex.Remove(go);
-     //   deletaItemInView(go);
-    }
-
+       /* List<GameObject> list=new List<GameObject>();
+        foreach (KeyValuePair<GameObject, int> t in datasAndIndex)
+        {
+            list.Add(t.Key);
+        }
+        for (int i = 0; i < list.Count; i++)
+        {
+            datasAndIndex.Remove(list[i]);
+            recycleItem(list[i]);
+        }
+        datasAndIndex.Clear();
+        list.Clear();
+        onDestroy.Call();*/
+    } 
 }

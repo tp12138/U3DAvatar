@@ -260,6 +260,7 @@ public static class ExampleConfig
     typeof(System.Action<int, UnityEngine.GameObject>),
     typeof(System.Action<string,string>),
     typeof(System.Action<UnityEngine.GameObject>),
+    typeof(System.Action<int>),
 
 };
     //黑名单
