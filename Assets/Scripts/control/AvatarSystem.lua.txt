@@ -1,6 +1,4 @@
 
-
-
 AvatarSystem={}
 package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
 require("AvatarModel")
@@ -13,7 +11,8 @@ end
 function init()
 	AvatarSystem.avatarModel=AvatarModel
 	--set observer
-	AvatarSystem.avatarModel:AddObserver(AvatarSystem)
+	AvatarSystem.avatarModel:AddObserver("updatePart",AvatarSystem,AvatarSystem.onUpdatePart)
+	AvatarSystem.avatarModel:AddObserver("addNewPart",AvatarSystem,AvatarSystem.AddNewPart)
 	AvatarSystem.RoleUIView=unity.GameObject.Find("AvatarSystem"):GetComponent("RoleUIViev")
 	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
 	initSource()	
@@ -42,7 +41,6 @@ function OnremoveMesh(go)
 end
 
 function tryToChangePeople(part,num)
-	
 	AvatarSystem.avatarModel.setState(part)
 	AvatarSystem.avatarModel.updateData(part,num)
 
@@ -52,8 +50,9 @@ function AvatarSystem.AddNewPart(part)
 		AvatarSystem.RoleUIView:setNewPart(part)
 end
 
-function  AvatarSystem.onUpdatePart(state,part,num)
-	AvatarSystem.RoleUIView:changeMesh(state,part,num)
+function  AvatarSystem.onUpdatePart(partNum)
+	names=AvatarSystem.split(partNum,'-')
+	AvatarSystem.RoleUIView:changeMesh(names[1],names[1],names[2])
 end
 
 function AvatarSystem.split(input, delimiter)

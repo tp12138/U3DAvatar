@@ -1562,9 +1562,9 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/UpdateCSObject.lua" ModifyTime = "1659492175333"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/XLua/Utils.lua" ModifyTime = "1659492175334"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/.lpproj/Apis/Unity/CS/__StaticArrayInitTypeSize=12.lua" ModifyTime = "1659492175334"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystem.lua.txt" ModifyTime = "1659498783370"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystem.lua.txt" ModifyTime = "1659522426797"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectDemoByMVC.lua.txt" ModifyTime = "1659428029430"/>
-  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua" ModifyTime = "1659498817546"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua" ModifyTime = "1659522450261"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua" ModifyTime = "1659500845328"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/x-old/AvatarSystem.lua.txt" ModifyTime = "1659492175472"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/x-old/ScrollRectDemoByXLua.lua.txt" ModifyTime = "1659492175473"/>
@@ -1576,4 +1576,5 @@
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Src/Editor/Template/TemplateCommon.lua.txt" ModifyTime = "1659492176114"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/XLua/Tutorial/LoadLuaScript/ByFile/Resources/byfile.lua.txt" ModifyTime = "1659492176121"/>
   <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectControl.lua.txt" ModifyTime = "1659501929918"/>
+  <CheckedCodeItem Filename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarObserver.lua" ModifyTime = "1659515443707"/>
 </CheckedCodeList>
