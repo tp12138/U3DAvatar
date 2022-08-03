@@ -1,12 +1,16 @@
-AvatarSystem={}
 
+
+
+AvatarSystem={}
+package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
+require("AvatarModel")
+require("AvatarObserver")
+AvatarSystem=AvatarObserver:new()
 local unity=CS.UnityEngine
 function  AvatarSystem:setRoleUIView(RoleUIViev)
 	AvatarSystem.RoleUIView=RoleUIViev
 end
 function init()
-	package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
-	require("AvatarModel")
 	AvatarSystem.avatarModel=AvatarModel
 	--set observer
 	AvatarSystem.avatarModel:AddObserver(AvatarSystem)
