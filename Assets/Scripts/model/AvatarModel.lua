@@ -8,53 +8,72 @@
 -- To disable this template, check off menuitem: Options-Enable Template File
 
 ---@class AvatarModel
+
+
 AvatarModel = {}
 AvatarModel.part={}
 AvatarModel.num={}
 AvatarModel.state=""
 
+--上层调用
 function AvatarModel.updateData(part,num)
 	local len=#AvatarModel.part
 	for i = 1, len do
 		if AvatarModel.part[i]==part then
 			AvatarModel.num[i]=num
-			UpdatePart(part,num)
+			AvatarModel:UpdatePart(part,num)
 			return
 		end
 	end
 end
+
 function  AvatarModel.setState(state)
 	AvatarModel.state=state	
 end
 
-function  AvatarModel.initCharacter()
-	local part=AvatarModel.control.dataPart
-	local num=AvatarModel.control.dataNum
-	configCharaterPart(part,num)
+function  AvatarModel.initCharacter(dataPart,dataNum)
+	for k, v in pairs(dataPart) do
+		table.insert(AvatarModel.part,v)
+		AvatarModel:AddNewPart(v)
+	end
+	for k, v in pairs(dataNum) do
+		table.insert(AvatarModel.num,v)
+	end
 	for i = 1, #AvatarModel.part do
-		UpdatePart(AvatarModel.part[i],AvatarModel.num[i])
+		--print(AvatarModel.part[i])
+		AvatarModel:UpdatePart(AvatarModel.part[i],AvatarModel.num[i])
+	end
+	--print(#AvatarModel.part)
+end
+
+--config Observer
+function AvatarModel:AddObserver(observer)
+	if self.observer==nil then
+		self.observers={}
+	end
+	table.insert(self.observers,observer)
+end
+
+function AvatarModel:RemoveObserver(observer)
+	for k, v in pairs(self.observers) do
+		if observer==v then
+			table.remove(self.observers,k)
+			break
+		end
 	end
 end
 
-function AvatarModel.setControl(control)
-	AvatarModel.control=control
-end
 
-function configCharaterPart(part,num)
-	local len=#part
-	for i = 1, len do
-		AvatarModel.part[i]=part[i]
-		AvatarModel.num[i]=num[i]
-		configRolePart(part[i])
+--notify observer
+function AvatarModel:AddNewPart(part)
+	for k, v in pairs(self.observers) do
+		v.AddNewPart(part)
 	end
 end
-function configRolePart(part)
-	
-	AvatarModel.control.AddNewPart(part)
-end
-
-function UpdatePart(part,num)
-	AvatarModel.control.onUpdatePart(AvatarModel.state,part,num)
+function AvatarModel:UpdatePart(part,num)
+	for k, v in pairs(self.observers) do
+		v.onUpdatePart(self.state,part,num)
+	end
 end
 
 return  AvatarModel

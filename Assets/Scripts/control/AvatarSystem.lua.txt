@@ -8,14 +8,15 @@ function init()
 	package.path=CS.UnityEngine.Application.dataPath.."/Scripts/model/?.lua"
 	require("AvatarModel")
 	AvatarSystem.avatarModel=AvatarModel
-	AvatarSystem.avatarModel.setControl(AvatarSystem)
+	--set observer
+	AvatarSystem.avatarModel:AddObserver(AvatarSystem)
 	AvatarSystem.RoleUIView=unity.GameObject.Find("AvatarSystem"):GetComponent("RoleUIViev")
 	avatarControl=unity.GameObject.Find("AvatarSystem"):GetComponent("AvatarControl")
 	initSource()	
 	loadSkinnedInfo()
 	AvatarSystem.dataPart={"eyes","hair","top","pants","shoes","face"}
 	AvatarSystem.dataNum={"1","1","1","1","1","1"}
-	AvatarSystem.avatarModel:initCharacter()
+	AvatarSystem.avatarModel.initCharacter(AvatarSystem.dataPart,AvatarSystem.dataNum)
 end
 
 function initSource()

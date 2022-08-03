@@ -24,42 +24,33 @@
   Replace = ""/>
 <MainWindow
   X = "217"
-  Y = "94"
+  Y = "277"
   Width = "1307"
   Height = "955"
   Maximized = "false"
-  LastCodeFilename = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectControl.lua.txt">
+  LastCodeFilename = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua">
   <DockingControl>
     <DockingNode DockingDirection = "Horizontal">
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "1004" Height = "838" DocumentStyle = "true">
-          <DockingCard
-            Text = "AvatarModel.lua"
-            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua"
-            ActivePage = "false"
-            ActivateTime = "2605078505"
-            CaretLineIndex = "56"
-            CaretCodeCharIndex = "20"
-            BaseX = "0"
-            BaseY = "0"/>
-          <DockingCard
-            Text = "ScrollRectModel.lua"
-            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/ScrollRectModel.lua"
-            ActivePage = "false"
-            ActivateTime = "2605082057"
-            CaretLineIndex = "27"
-            CaretCodeCharIndex = "35"
-            BaseX = "0"
-            BaseY = "0"/>
+        <DockingBlock Width = "1005" Height = "838" DocumentStyle = "true">
           <DockingCard
             Text = "ScrollRectControl.lua.txt"
             Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/ScrollRectControl.lua.txt"
-            ActivePage = "true"
-            ActivateTime = "2606153776"
-            CaretLineIndex = "130"
+            ActivePage = "false"
+            ActivateTime = "2606274389"
+            CaretLineIndex = "132"
             CaretCodeCharIndex = "0"
             BaseX = "0"
-            BaseY = "-1575"/>
+            BaseY = "-1350"/>
+          <DockingCard
+            Text = "AvatarModel.lua"
+            Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/model/AvatarModel.lua"
+            ActivePage = "true"
+            ActivateTime = "2606318967"
+            CaretLineIndex = "31"
+            CaretCodeCharIndex = "30"
+            BaseX = "0"
+            BaseY = "0"/>
           <DockingCard
             Text = "AvatarSystem.lua.txt"
             Tag = "D:/githubTemp/U3DAvatar/Assets/Scripts/control/AvatarSystem.lua.txt"
@@ -72,7 +63,7 @@
         </DockingBlock>
       </DockingNode>
       <DockingNode DockingDirection = "None">
-        <DockingBlock Width = "284" Height = "838" DocumentStyle = "false">
+        <DockingBlock Width = "283" Height = "838" DocumentStyle = "false">
           <DockingCard
             Text = "Project"
             Tag = ""

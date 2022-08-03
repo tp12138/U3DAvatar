@@ -58,19 +58,23 @@ public class AvatarControl : MonoBehaviour
     /// <returns></returns>
     public SkinnedMeshRenderer getSkinnedMeshByPartAndNum(string part, string num)
     {
+       
         if (skinnedSourceDict.ContainsKey(part) == false)
         {
+           
             Debug.LogError("part name error " + part);
             return null;
         }
         else
         {
+            
             if (skinnedSourceDict[part].ContainsKey(num) == false)
             {
                 Debug.LogError("the part :" + part + ",do not have num:" + num);
                 return null;
             }
         }
+        
         return skinnedSourceDict[part][num];
     }
 
