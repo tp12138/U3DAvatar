@@ -41,7 +41,6 @@ function setRecordAndGrid()
 	for i =0,dat.Count-1,1 do
 		ddd[i+1]=dat[i]
 	end
-	
 	ScrollRectControl.ScrollModel.setDatas(ddd)
 	local count=ScrollRectControl.ScrollModel.getDatasLength()
 	self.dataCount=count
@@ -61,16 +60,14 @@ function setRecordAndGrid()
 		ScrollRectControl.GnenerNewItem(i)
 	end
 	ScrollRectControl.isLoadingRecord=false
-	
 end
+
 function ScrollRectControl.setRecord()
 	ScrollRectControl.ScrollModel.clearDatas()
 	ScrollRectControl.needDispose={}
 	local ots=coroutine.create(setRecordAndGrid)
 	coroutine.resume(ots)
 end
-
-
 
 function ScrollRectControl.getItemSize()
 	local size=CS.UnityEngine.Vector2(ScrollRectControl.itemWidth*2,ScrollRectControl.itemWidth*2)
@@ -90,8 +87,6 @@ function SetNewItem(index)
 	if go~=nil then
 		ScrollRectControl.datasAndIndex:Add(go,index)
 		local itemName=ScrollRectControl.ScrollModel.getDataByIndex(index)
-		if(itemName==nil) then
-		end
 		local size=ScrollRectControl.getItemSize()
 		local pos=ScrollRectControl.getItemPosition(index)
 		ScrollRectControl.scrollRectView:setRecordItem(index,go,itemName,size,pos)
@@ -134,11 +129,4 @@ function deleteItem(go)
 	end
 end
 
-function  onDestroy()
-	ScrollRectControl.ScrollModel.clearDatas();
-	for k, v in pairs(ScrollRectControl.needDispose) do
-		ScrollRectControl.scrollRectView:destroyItem(v)
-	end
-	ScrollRectControl.needDispose={}
-end
 init()

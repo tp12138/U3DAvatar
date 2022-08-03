@@ -29,7 +29,6 @@ public class ScrollRectControl : MonoBehaviour
     public Action<GameObject> recycleItem;
     public Action<int> setNewItem;
     public Action<GameObject> tryToDeleteItem;
-    public LuaFunction onDestroy;
     void Start()
     {
         datasAndIndex = new Dictionary<GameObject, int>();
@@ -43,16 +42,20 @@ public class ScrollRectControl : MonoBehaviour
         recycleItem = scriptEnv.Get<Action<GameObject>>("RecycleItem");
         setNewItem = scriptEnv.Get<Action<int>>("SetNewItem");
         tryToDeleteItem = scriptEnv.Get<Action<GameObject>>("deleteItem");
-        onDestroy = scriptEnv.Get<LuaFunction>("onDestroy");
         this.isDragIng = false;
     }
     void OnEnable()
     {
         if (scriptEnv != null)
         {
-            var temp = transform.GetComponent<ScrollRectUIView>().listContent.GetComponentsInChildren<Transform>();
-            for (int i = 1; i < temp.Length; i++)
-                Destroy(temp[i].gameObject);
+            var temp = transform.GetComponent<ScrollRectUIView>().listContent.GetComponent<Transform>();
+            if (temp.childCount > 0)
+            {
+                for (int i = 0; i < temp.childCount; i++)
+                {
+                    Destroy(temp.GetChild(i).gameObject);
+                }
+            }
             luaEnv.DoString(luaScript.text, "ScrollControl.Lua", scriptEnv);
         }
 
@@ -120,20 +123,5 @@ public class ScrollRectControl : MonoBehaviour
         tryToDeleteItem(go);
     }
 
-    void onDisable()
-    {
-       /* List<GameObject> list=new List<GameObject>();
-        foreach (KeyValuePair<GameObject, int> t in datasAndIndex)
-        {
-            list.Add(t.Key);
-        }
-        for (int i = 0; i < list.Count; i++)
-        {
-            datasAndIndex.Remove(list[i]);
-            recycleItem(list[i]);
-        }
-        datasAndIndex.Clear();
-        list.Clear();
-        onDestroy.Call();*/
-    } 
+
 }
